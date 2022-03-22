@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:CustomRendererDemo" xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="Aquary.Views.MenuPage"  
+                Title="{i18n:Translate MORE_Title}"
+              xmlns:footer="clr-namespace:Aquary.ReusableComponents"
+             xmlns:converters="clr-namespace:Aquary.Converters" 
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"        
+                            xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+ BackgroundColor="#ECECEC"
+              NavigationPage.HasNavigationBar="False"
+                Shell.TabBarIsVisible="False"             
+              Shell.NavBarHasShadow="False"                       
+            xmlns:i18n="clr-namespace:Aquary.Helper">
+
+    <StackLayout >
+        
+        <pancake:PancakeView Padding="0"
+                     BackgroundColor="#FFFFFF"
+                               VerticalOptions="FillAndExpand"
+                     CornerRadius="40,40,0,0" >
+            <StackLayout x:Name="Menu_Scroll_Lang" Margin="0,50,0,0">
+                <StackLayout >
+           
+       
+   
+        <ScrollView   BackgroundColor="White">
+
+                    <StackLayout  VerticalOptions="CenterAndExpand"   >
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1.25" Color="#E0E0E0"/>
+                        
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Frame CornerRadius="0"   Padding="0"   
+                     
+                       BackgroundColor="Transparent"
+                           WidthRequest="380">
+                        <StackLayout Orientation="Horizontal" Spacing="2" Padding="20,0,0,0" >
+                    <Image Source="Setting.png" WidthRequest="20" HeightRequest="20" Margin="2"/>
+                                    <Button x:Name="btn_Setting" FontSize="18" Text="{i18n:Translate Settings}"  Clicked="SETTING_Clicked"  BackgroundColor="Transparent" TextColor="Gray"   FontFamily="Silka"></Button>
+
+                </StackLayout>
+</Frame>
+                    </StackLayout>
+                         <StackLayout x:Name="Tab_SETTING" Padding="20" Spacing="15" IsVisible="FALSE">
+
+                                <StackLayout Orientation="Horizontal" Spacing="50">
+                                    <Label x:Name="Lang_title" Text="{i18n:Translate Langtitle}"  HorizontalOptions="Fill" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" >
+                                        <StackLayout Orientation="Horizontal">
+                                            <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                                <input:RadioButton x:Name="rdb_langar"  Text="{i18n:Translate rdblangar}" Value="Ar"   TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_langar_clicked"/>
+                                                <input:RadioButton x:Name="rdb_langen" Text="{i18n:Translate rdblangen}" Value="En" IsChecked="True" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_langen_clicked"/>
+                                            </input:RadioButtonGroupView>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+
+
+
+                                <StackLayout Orientation="Horizontal" Spacing="50">
+                                        <Label Text="{i18n:Translate TextSize}"  FontSize="Medium" />
+                        <StackLayout Orientation="Horizontal" Spacing="20">
+
+                                        <Button x:Name="Btn_LOCATION" Clicked="Btn_LOCATION_Clicked" Text="A" FontSize="15" HeightRequest="50" WidthRequest="50" BackgroundColor="White" TextColor="#1269C8"  BorderWidth="1" BorderRadius="15" BorderColor="#1269C8"></Button>
+                                        <Button x:Name="Btn_DESCRIPTION" Text="A" FontSize="15" HeightRequest="50" WidthRequest="50" BackgroundColor="#1269C8" TextColor="White"  BorderWidth="1" BorderRadius="15" BorderColor="#1269C8"></Button>
+                                        <Button x:Name="Btn_COMMENTS" Text="A" FontSize="15" FontAttributes="Bold" HeightRequest="50" WidthRequest="50" BackgroundColor="White" TextColor="#1269C8"  BorderWidth="1" BorderRadius="15" BorderColor="#1269C8"></Button>
+                        </StackLayout>
+                    </StackLayout>
+
+
+                    <TableView Intent="Data"  HeightRequest="50">
+                        <TableRoot>
+                            <TableSection Title="">
+
+                                                <SwitchCell x:Name="Switch_Dark" Text="{i18n:Translate DarkMode}"  On="False"  />
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+
+
+                </StackLayout>
+
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1.25" Color="#E0E0E0"/>
+
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                            
+                    <Frame CornerRadius="0"   Padding="0" 
+                            BackgroundColor="Transparent"
+                           WidthRequest="380">
+                        <StackLayout Orientation="Horizontal" Spacing="2" Padding="20,0,0,0">
+                            <Image Source="Suggest.png" WidthRequest="20" HeightRequest="20" Margin="2"/>
+                                            <Button Text="{i18n:Translate COMPLAINSUGGESTIONS}"   Clicked="btn_COMPLAIN_Clicked"  BackgroundColor="Transparent" TextColor="Gray" FontSize="18"  FontFamily="Silka"></Button>
+
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                 <StackLayout x:Name="Tab_Complain" Padding="15" Spacing="25" IsVisible="FALSE">
+
+
+
+                    <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="335" >
+                        <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,10,0,0">
+                                            <local:RoundedEntry  x:Name="Title" FontSize="Medium" BackgroundColor="Transparent" TextColor="Black"   Placeholder="{i18n:Translate Email}" />
+                        </StackLayout>
+                    </Frame>
+
+
+
+                    <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="200"
+                       WidthRequest="335" >
+                        <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,10,0,0">
+                                            <local:RoundedEntry  x:Name="Description" FontSize="Medium" BackgroundColor="White" TextColor="Black" Placeholder="{i18n:Translate Message}"  HeightRequest="200" VerticalTextAlignment="Start"/>
+                        </StackLayout>
+                    </Frame>
+
+
+                                    <Button Text="{i18n:Translate Send}"  HorizontalOptions="End" Clicked="Submit_Clicked" CornerRadius="40" WidthRequest="150" BackgroundColor="#1269C8"></Button>
+                   
+                </StackLayout>
+
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1.25" Color="#E0E0E0"/>
+                        <Button Text=" ABOUT US"  HorizontalOptions="Fill"   VerticalOptions = "Start" Clicked="Aboutus_Clicked" BackgroundColor="White" TextColor="Gray" FontAttributes="Bold" BorderWidth="1" BorderRadius="40" BorderColor="CornflowerBlue" IsVisible="false"></Button>
+
+
+
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Frame CornerRadius="0"   Padding="0"   
+              
+                       BackgroundColor="Transparent"
+                           WidthRequest="380">
+                        <StackLayout Orientation="Horizontal" Spacing="2" Padding="20,0,0,0">
+                            <Image Source="Contact_us.png" WidthRequest="20" HeightRequest="20" Margin="2"/>
+                                            <Button Text="{i18n:Translate CONTACTUS}"  Clicked="contactus_Clicked"  BackgroundColor="Transparent" TextColor="Gray"  BorderRadius="40" BorderColor="CornflowerBlue" FontFamily="Silka" FontSize="18"></Button>
+
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+              
+           
+                    <StackLayout  x:Name="Tab_Contact_Us" Padding="20,5,20,5" Spacing="20" IsVisible="FALSE">
+
+                        <Frame  CornerRadius="20"  Padding="10">
+                        <StackLayout Orientation="Horizontal"  Spacing="90">
+
+                            <StackLayout Orientation="Vertical" Padding="15,0,0,0">
+                                <Label   Text="00962 799654645"  FontSize="18" TextColor="Black"  HorizontalTextAlignment="start"/>
+                                <Label   Text="call us" FontSize="14" TextColor="#6C6C6C" HorizontalTextAlignment="Start"/>
+                            </StackLayout>
+                            <Image Source="call.png" WidthRequest="35" HeightRequest="35" HorizontalOptions="End" />
+
+                        </StackLayout>
+                    </Frame>
+                        
+                    <Frame   CornerRadius="20" Padding="15">
+                        <StackLayout Orientation="Horizontal" Spacing="90">
+
+                            <StackLayout Orientation="Vertical" Padding="15,0,0,0">
+                                <Label   Text="info@aeqary.com"  FontSize="18" TextColor="Black" HorizontalTextAlignment="start"/>
+                                <Label   Text="contact us" FontSize="14" TextColor="#6C6C6C" HorizontalTextAlignment="Start"/>
+                            </StackLayout>
+                            <Image Source="email_small.png" WidthRequest="35" HeightRequest="35" HorizontalOptions="End" />
+
+                        </StackLayout>
+                    </Frame>
+
+
+                        <Label  Text="Map"  HorizontalOptions="Fill"  FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+
+                        <map:Map  x:Name="mapObject"  MapType="Street"              
+                        WidthRequest="200"
+                        HeightRequest="300"/>
+                        <StackLayout BackgroundColor="White"  Padding="5" Spacing="2" Grid.Row="5">
+                            <Label x:Name="addressEntry"/>
+                        </StackLayout>
+                    </StackLayout>
+
+
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2.25" Color="#E0E0E0"/>
+
+                          
+                        </StackLayout>
+                       
+                    </ScrollView>
+                   
+                
+            
+                </StackLayout>
+
+               
+            </StackLayout>
+      
+        </pancake:PancakeView>
+       <!--<StackLayout  >
+            <footer:FooterTabbedBar   />
+        </StackLayout>-->
+
+    </StackLayout>
+    
+</ContentPage>

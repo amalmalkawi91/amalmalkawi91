@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aquary.Views.My_Favorite"
+               xmlns:i18n="clr-namespace:Aquary.Helper"
+               BackgroundColor="#ECECEC"
+               Shell.TabBarIsVisible="False"
+                    Shell.NavBarHasShadow="False"
+               xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"            
+               Title="{i18n:Translate MY_FAVORITE_Title}">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout x:Name="Menu_Scroll_Lang">
+        <pancake:PancakeView Padding="10"
+                     BackgroundColor="#FFFFFF"
+                     CornerRadius="40,40,0,0">
+            <StackLayout Margin="10,5,10,10">
+                <CollectionView x:Name="collectionView"
+                          SelectionMode="Single"                  
+               SelectionChanged="CollectionViewListSelectionChanged">
+
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="0,10,0,10" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Frame CornerRadius="20"   Padding="0"    
+                        HeightRequest="300"
+                       WidthRequest="380"
+                       IsClippedToBounds="False"
+                             >
+                                    <StackLayout Orientation="Vertical" Padding="0" >
+
+
+                                        <Frame CornerRadius="10" Padding="0"  HorizontalOptions="Center"
+                                IsClippedToBounds="True">
+                                            <Image Source="{Binding logo}"  Aspect="AspectFill" WidthRequest="380" HeightRequest="200" />
+                                        </Frame>
+
+                                        <StackLayout Orientation="Horizontal" Spacing="80" Padding="10,5,0,0">
+
+                                            <Label Text="{Binding title}" MaxLines="1" FontSize="22" TextColor="Black"   HorizontalTextAlignment="Start" FontFamily="Silka" WidthRequest="160"/>
+                                            <StackLayout Orientation="Horizontal" IsVisible="{Binding price}">
+                                                <Label  Text="JOD" FontSize="20" TextColor="#1269C8" HorizontalTextAlignment="End" FontFamily="Silka"  WidthRequest="60"/>
+                                                <Label  Text="{Binding price}"    FontSize="20" TextColor="#1269C8" HorizontalTextAlignment="Start" FontFamily="Silka" WidthRequest="100"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Margin="10,5,0,0">
+                                            <Image Source="Gray_Location.jpg" WidthRequest="15" HeightRequest="15" />
+                                            <Label  Text="{Binding area}"   FontSize="16" HorizontalTextAlignment="start" TextColor="#7F7F7F" FontFamily="Silka" MaxLines="1" WidthRequest="60"/>
+                                            <Label  Text=","  HorizontalTextAlignment="start" FontSize="16" TextColor="#7F7F7F"/>
+                                            <Label Text="{Binding region_en}"   FontSize="16"  HorizontalTextAlignment="Start" TextColor="#7F7F7F" FontFamily="Silka" MaxLines="1" />
+
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Spacing="5"  Margin="0,3,0,0" Padding="10" >
+                                            <StackLayout IsVisible="{Binding land_area_value}" Orientation="Horizontal">
+                                                <Image Source="land_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                                <Label   Text="{Binding land_area_value}"   FontSize="18" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                                <Label   Text="m2"   FontSize="18" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                            </StackLayout>
+
+                                            <StackLayout IsVisible="{Binding building_area}" Orientation="Horizontal">
+                                                <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                                <Label   Text="{Binding building_area}"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+                                                <Label   Text="m2"   FontSize="18" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                            </StackLayout>
+                                            <StackLayout IsVisible="{Binding number_room}" Orientation="Horizontal">
+                                                <Image Source="No_bed.jpg" WidthRequest="20" HeightRequest="20" />
+                                                <Label  Text="{Binding number_room}"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                                <Label   Text="Bed"   FontSize="18" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                            </StackLayout>
+                                            <StackLayout IsVisible="{Binding number_bath}" Orientation="Horizontal">
+                                                <Image Source="No_bath.jpg" WidthRequest="20" HeightRequest="20" />
+                                                <Label  Text="{Binding number_bath}"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                                <Label   Text="Bath"   FontSize="18" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+
+                                </Frame>
+
+
+
+
+                            </Grid>
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <CollectionView x:Name="collectionView_Ar" IsVisible="false"
+                          SelectionMode="Single"                  
+               SelectionChanged="CollectionViewListSelectionChanged">
+
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="0,10,0,10" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Frame CornerRadius="20"   Padding="0"    
+                        HeightRequest="300"
+                       WidthRequest="380"
+                       IsClippedToBounds="False"
+                             >
+                                    <StackLayout Orientation="Vertical" Padding="0" >
+
+
+                                        <Frame CornerRadius="10" Padding="0"  HorizontalOptions="Center"
+                                IsClippedToBounds="True">
+                                            <Image Source="{Binding logo}"  Aspect="AspectFill" WidthRequest="380" HeightRequest="200" />
+                                        </Frame>
+
+                                        <StackLayout Orientation="Horizontal" Spacing="50" Padding="10,5,0,0">
+
+                                            <Label Text="{Binding title}" MaxLines="1" FontSize="22" TextColor="Black"   HorizontalTextAlignment="End" FontFamily="Silka" WidthRequest="120"/>
+                                            <StackLayout Orientation="Horizontal" IsVisible="{Binding price}">
+                                                <Label  Text="{Binding price}" MaxLines="1"   FontSize="20" TextColor="#1269C8" HorizontalTextAlignment="Start" FontFamily="Silka"  />
+                                                <Label  Text="دينار" FontSize="20" TextColor="#1269C8" HorizontalTextAlignment="Start" FontFamily="Silka" MaxLines="1" />
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Margin="0,5,10,0">
+                                            <Image Source="Gray_Location.jpg" WidthRequest="15" HeightRequest="15" />
+                                            <Label  Text="{Binding area_ar}"   FontSize="16" HorizontalTextAlignment="start" TextColor="#7F7F7F" FontFamily="Silka" MaxLines="1" />
+                                            <Label  Text=","  HorizontalTextAlignment="start" FontSize="16" TextColor="#7F7F7F"/>
+                                            <Label Text="{Binding region_ar}"   FontSize="16"  HorizontalTextAlignment="Start" TextColor="#7F7F7F" FontFamily="Silka" MaxLines="1"/>
+
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Spacing="5"  Margin="0,3,0,0" Padding="10" >
+                                            <StackLayout IsVisible="{Binding land_area_value}" Orientation="Horizontal">
+                                                <Image Source="land_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                                <Label   Text="{Binding land_area_value}"   FontSize="18" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                                <Label   Text="m2"   FontSize="18" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                            </StackLayout>
+
+                                            <StackLayout IsVisible="{Binding building_area}" Orientation="Horizontal">
+                                                <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                                <Label   Text="{Binding building_area}"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+                                                <Label   Text="m2"   FontSize="18" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                            </StackLayout>
+                                            <StackLayout IsVisible="{Binding number_room}" Orientation="Horizontal">
+                                                <Image Source="No_bed.jpg" WidthRequest="20" HeightRequest="20" />
+                                                <Label  Text="{Binding number_room}"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                                <Label   Text="Bed"   FontSize="18" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                            </StackLayout>
+                                            <StackLayout IsVisible="{Binding number_bath}" Orientation="Horizontal">
+                                                <Image Source="No_bath.jpg" WidthRequest="20" HeightRequest="20" />
+                                                <Label  Text="{Binding number_bath}"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                                <Label   Text="Bath"   FontSize="18" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+
+                                </Frame>
+
+
+
+
+                            </Grid>
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </pancake:PancakeView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aquary.Views.My_Profile"
+                 xmlns:footer="clr-namespace:Aquary.ReusableComponents"
+             xmlns:converters="clr-namespace:Aquary.Converters" 
+                xmlns:local="clr-namespace:CustomRendererDemo"
+              BackgroundColor="#ECECEC"
+              NavigationPage.HasNavigationBar="True"
+                Shell.TabBarIsVisible="false"
+              Shell.NavBarHasShadow="False"
+             FlowDirection="LeftToRight"
+              xmlns:i18n="clr-namespace:Aquary.Helper"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             Title="{i18n:Translate Profile_Title}" >
+
+
+    <StackLayout >
+        <pancake:PancakeView Padding="10,0,0,10"
+                     BackgroundColor="#FFFFFF"
+                             HeightRequest="1000"
+                     CornerRadius="40,40,0,0">
+            <StackLayout>
+                <Grid>
+              
+                    <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+           
+                    <ScrollView Grid.Row="1">
+
+
+
+
+                        <StackLayout Spacing="30" Padding="15" x:Name="Menu_Scroll_Lang">
+
+                <StackLayout Spacing="0" Padding="10">
+                    <Frame CornerRadius="100" Padding="0,0,0,0"  HorizontalOptions="Center"
+            HeightRequest="90" WidthRequest="90"    IsClippedToBounds="True">
+                    <Image x:Name="Profile_Picture"  Aspect="AspectFill" />
+                </Frame>
+                            <Label x:Name="LblName" FontSize="18" HorizontalTextAlignment="Center" TextTransform="Uppercase" FontFamily="Silka" TextColor="#000000" Margin="0,20,0,0"/>
+                    <StackLayout Orientation="Horizontal" Spacing="5"  HorizontalOptions="Center" >
+                                    <Button x:Name="Show_Profile" Text="{i18n:Translate Edit_Profile}"  FontSize="15" FontFamily="Silka" Clicked="Show_Profile_Clicked" BackgroundColor="White" TextColor="#1269C8">
+                </Button>
+                    <ImageButton Source="edit_profile.png" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent"/>
+                    </StackLayout>
+                    <StackLayout x:Name="Show_Myprofile" IsVisible="false"  Spacing="30" >
+
+                     
+                        <StackLayout HorizontalOptions="Start" Padding="0,20,0,0">
+                            <Frame CornerRadius="40"   Padding="0"   
+                       BorderColor="#1269C8"
+                       BackgroundColor="#1269C8"
+                           WidthRequest="200" HeightRequest="40">
+
+                                <StackLayout Orientation="Horizontal" Spacing="2" Padding="20,0,0,0" >
+                                                <Button Text="{i18n:Translate upload_photo}"  HorizontalOptions="Start"  Clicked="upload_Clicked"  FontAttributes="Bold" BackgroundColor="#1269C8" FontFamily="Silka"></Button>
+                                    
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+
+
+
+
+                        <Frame CornerRadius="40"   Padding="0"    
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="400" >
+                            <local:RoundedEntry  x:Name="Email" FontSize="Medium" BackgroundColor="White" TextColor="Black"   Placeholder="Email"  IsReadOnly="True"/>
+                        </Frame>
+
+                        <Frame CornerRadius="40"   Padding="0"    
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="400" >
+                            <local:RoundedEntry  x:Name="Name" FontSize="Medium" BackgroundColor="White" TextColor="Black"   Placeholder="Name" />
+                        </Frame>
+
+                        <Frame CornerRadius="40"   Padding="0"    
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="400" >
+                            <local:RoundedEntry  x:Name="Phone" FontSize="Medium" BackgroundColor="White" TextColor="Black"   Placeholder="Phone" />
+                        </Frame>
+
+
+
+                        <Frame CornerRadius="40"   Padding="0"    
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True" 
+                               BorderColor="#1269C8"
+                       HeightRequest="50"
+                       WidthRequest="400" >
+                                        <Button  Text="{i18n:Translate Edit_Profile}"  HorizontalOptions="FillAndExpand" Clicked="Edit_Clicked" BackgroundColor="#1269C8" FontFamily="Silka" FontSize="18"></Button>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>               
+
+
+                <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="335"
+                       BorderColor="#1269C8">
+                    <StackLayout Orientation="Horizontal" Spacing="2" Padding="30,0,0,0" >
+                        <Image Source="My_Adv.jpg" WidthRequest="16" HeightRequest="20" Margin="5"/>
+                                    <Button Text="{i18n:Translate MyAds}"   FontSize="14"   VerticalOptions = "FillAndExpand" Clicked="My_ads_Clicked" BackgroundColor="Transparent" TextColor="#555555"  FontFamily="Silka"></Button>
+                    </StackLayout>
+                </Frame>
+
+
+
+                <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="335"
+                       BorderColor="#1269C8">
+                    <StackLayout Orientation="Horizontal" Spacing="2" Padding="30,0,0,0" >
+                        <Image Source="My_Intrested.jpg" WidthRequest="16" HeightRequest="20" Margin="5"/>
+                                    <Button Text="{i18n:Translate MyINTERSTED}"   FontSize="14"   VerticalOptions = "FillAndExpand" Clicked="My_Inter_Clicked" BackgroundColor="Transparent" TextColor="#555555"  FontFamily="Silka"></Button>
+                    </StackLayout>
+                </Frame>
+
+
+                <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="335"
+                       BorderColor="#1269C8">
+                    <StackLayout Orientation="Horizontal" Spacing="2" Padding="30,0,0,0" >
+                        <Image Source="My_Fav.jpg" WidthRequest="16" HeightRequest="20" Margin="5"/>
+                                    <Button Text="{i18n:Translate MyFAVORITE}"    BorderColor="#1269C8" FontSize="14"   VerticalOptions = "FillAndExpand" Clicked="My_fav_Clicked" BackgroundColor="Transparent" TextColor="#555555"  FontFamily="Silka"></Button>
+                    
+                    </StackLayout>
+                </Frame>
+
+
+
+                <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="335"
+                       BorderColor="#1269C8">
+                    <StackLayout Orientation="Horizontal" Spacing="2" Padding="30,0,0,0" >
+                        <Image Source="Password.jpg" WidthRequest="16" HeightRequest="20" Margin="5"/>
+                                    <Button  Text="{i18n:Translate CHANGEPASSWORD}" FontSize="14"   VerticalOptions = "FillAndExpand" Clicked="Change_Password_Clicked" BackgroundColor="Transparent" TextColor="#555555"  FontFamily="Silka"></Button>
+                    </StackLayout>
+                </Frame>
+
+
+
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.25" Color="#1269C8"/>
+
+                <StackLayout HorizontalOptions="Start">
+                    <Frame CornerRadius="40"   Padding="0"   
+                       BorderColor="#1269C8"
+                       BackgroundColor="#1269C8"
+                           WidthRequest="160" HeightRequest="50">
+                        
+                    <StackLayout Orientation="Horizontal" Spacing="0" Padding="20,0,0,0" >
+                        <Image Source="Logout.jpg" WidthRequest="16" HeightRequest="20" Margin="0"/>
+                                        <Button  Text="{i18n:Translate Logout}"  HorizontalOptions="Start"  Clicked="Logout_Clicked"   BackgroundColor="Transparent" FontFamily="Silka" FontSize="18"></Button>
+
+                    </StackLayout>
+                </Frame>
+                </StackLayout>
+       
+
+            </StackLayout>
+            
+        </ScrollView>
+                
+            </Grid>
+            <StackLayout>
+                <footer:FooterTabbedBar
+            VerticalOptions="End"
+            Grid.Row="0" x:Name="footer"/>
+             </StackLayout>
+ </StackLayout>
+    </pancake:PancakeView>
+       
+    </StackLayout>
+</ContentPage>

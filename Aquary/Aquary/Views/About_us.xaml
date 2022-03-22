@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aquary.Views.About_us"
+                 Title="{Binding Title}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <!--  <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
+                </ContentView>-->
+            </StackLayout>
+        </StackLayout>
+        <ScrollView Grid.Row="1">
+            <StackLayout Spacing="3" Padding="15">
+        <Label Text="Company Name" FontSize="Medium" />
+        <Entry x:Name="company_name" Text="" FontSize="Medium" IsReadOnly="True" IsEnabled="False" />
+        <Label Text="About Us" FontSize="Medium" />
+                <Editor x:Name="aboutus_en" FontSize="Medium" IsReadOnly="True" IsEnabled="False" AutoSize="TextChanges" />
+        <Label Text="About Us" FontSize="Medium" />
+                <Editor x:Name="aboutus_ar" Text="" FontSize="Medium" IsReadOnly="True" IsEnabled="False" AutoSize="TextChanges"/>
+        <Label Text="address" FontSize="Medium" />
+                <Entry x:Name="address" Text="" FontSize="Medium" IsReadOnly="True" IsEnabled="False" />
+
+        <Label Text="post_office" FontSize="Medium" />
+                <Entry x:Name="post_office" Text="" FontSize="Medium" IsReadOnly="True" IsEnabled="False" />
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+  
+</ContentPage>

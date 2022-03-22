@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aquary.Views.NotificationPage"
+                xmlns:footer="clr-namespace:Aquary.ReusableComponents"
+              xmlns:i18n="clr-namespace:Aquary.Helper"
+               xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"      
+             xmlns:converters="clr-namespace:Aquary.Converters" 
+              Shell.TabBarIsVisible="False"
+                Title="{i18n:Translate NOTIFICATION_Title}">
+    <StackLayout >
+
+        <pancake:PancakeView Padding="0"
+                     BackgroundColor="#FFFFFF"
+                             VerticalOptions="FillAndExpand"  
+                     CornerRadius="40,40,0,0" >
+            <StackLayout >
+                <StackLayout >
+                    <CollectionView x:Name="collectionView1"
+                 SelectionMode="Single"
+               SelectionChanged="CollectionViewListSelectionChanged">
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="1"
+                       Text="{Binding Text_En}"
+                       FontAttributes="Bold" IsVisible="false" />
+                                    <Label Grid.Column="1"
+                       Text="{Binding Text_Ar}"
+                       FontAttributes="Bold" IsVisible="true"/>
+                                    <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding Admin_Notification_Id}"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" IsVisible="false" />
+                                </Grid>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                <StackLayout >
+                    <footer:FooterTabbedBar
+            VerticalOptions="Start"
+            Grid.Row="0"/>
+                </StackLayout>
+            </StackLayout>
+        </pancake:PancakeView>
+      
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Acres" xml:space="preserve">
+    <value>Acres</value>
+  </data>
+  <data name="active" xml:space="preserve">
+    <value>active</value>
+  </data>
+  <data name="Add_ads_Title" xml:space="preserve">
+    <value>ADD ADVERTISEMENT</value>
+  </data>
+  <data name="Ads_status" xml:space="preserve">
+    <value>Ads Status</value>
+  </data>
+  <data name="Advertiser_Type" xml:space="preserve">
+    <value>Advertiser Type</value>
+  </data>
+  <data name="Allow_comment" xml:space="preserve">
+    <value>Allow comment</value>
+  </data>
+  <data name="Annual_income" xml:space="preserve">
+    <value>Annual income</value>
+  </data>
+  <data name="Appartment_type" xml:space="preserve">
+    <value>Appartment type</value>
+  </data>
+  <data name="Bathroom" xml:space="preserve">
+    <value>Bathroom</value>
+  </data>
+  <data name="btn_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Buiding_type" xml:space="preserve">
+    <value>Buiding Type</value>
+  </data>
+	<data name="Building_Age" xml:space="preserve">
+    <value>Building Age</value>
+  </data>
+	<data name="rental_period" xml:space="preserve">
+    <value>Rental Period</value>
+  </data>
+	<data name="Daily_Rental_Period" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+	<data name="Monthly_Rental_Period" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+	<data name="Yearly_Rental_Period" xml:space="preserve">
+    <value>Yearly</value>
+  </data>
+	<data name="Building_Area" xml:space="preserve">
+    <value>Building Area</value>
+  </data>
+  <data name="Building_Condition" xml:space="preserve">
+    <value>Building condition</value>
+  </data>
+  <data name="Cash" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="CHANGEPASSWORD" xml:space="preserve">
+    <value>CHANGE PASSWORD</value>
+  </data>
+  <data name="ChangePassword_Title" xml:space="preserve">
+    <value>CHANGE PASSWORD</value>
+  </data>
+  <data name="chk_Has_ads" xml:space="preserve">
+    <value>Has Ads</value>
+  </data>
+  <data name="COMMENTS" xml:space="preserve">
+    <value>COMMENTS</value>
+  </data>
+  <data name="company" xml:space="preserve">
+    <value>company</value>
+  </data>
+  <data name="Company_name" xml:space="preserve">
+    <value>Company name</value>
+  </data>
+  <data name="COMPLAINSUGGESTIONS" xml:space="preserve">
+    <value>COMPLAIN and SUGGESTIONS</value>
+  </data>
+  <data name="Confirm_Password" xml:space="preserve">
+    <value>CONFIRM PASSWORD</value>
+  </data>
+  <data name="CONTACTUS" xml:space="preserve">
+    <value>CONTACT US</value>
+  </data>
+  <data name="DarkMode" xml:space="preserve">
+    <value>Dark Mode</value>
+  </data>
+  <data name="DESCRIPTION" xml:space="preserve">
+    <value>DESCRIPTION</value>
+  </data>
+  <data name="DETAILS" xml:space="preserve">
+    <value>DETAILS</value>
+  </data>
+  <data name="Diffrent" xml:space="preserve">
+    <value>Diffrent</value>
+  </data>
+  <data name="Dont_Have_Account" xml:space="preserve">
+    <value>You Don't Have Account?</value>
+  </data>
+  <data name="EDIT" xml:space="preserve">
+    <value>EDIT</value>
+  </data>
+  <data name="Edit_Profile" xml:space="preserve">
+    <value>Edit My information</value>
+  </data>
+  <data name="Elevator" xml:space="preserve">
+    <value>Elevator</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Existence_services" xml:space="preserve">
+    <value>Existence of services</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="Filter_Title" xml:space="preserve">
+    <value>FILTER</value>
+  </data>
+  <data name="fixed" xml:space="preserve">
+    <value>fixed</value>
+  </data>
+  <data name="Floor_appartment" xml:space="preserve">
+    <value>Floor appartment</value>
+  </data>
+  <data name="Floor_number" xml:space="preserve">
+    <value>Floor number</value>
+  </data>
+  <data name="Forget_Password" xml:space="preserve">
+    <value>Forget Password?</value>
+  </data>
+  <data name="Freez" xml:space="preserve">
+    <value>Freez</value>
+  </data>
+  <data name="Furnished" xml:space="preserve">
+    <value>Furnished</value>
+  </data>
+  <data name="Garden" xml:space="preserve">
+    <value>Garden</value>
+  </data>
+  <data name="Has_Account" xml:space="preserve">
+    <value>You  Have Account?</value>
+  </data>
+  <data name="HOME" xml:space="preserve">
+    <value>HOME</value>
+  </data>
+  <data name="Home_Title" xml:space="preserve">
+    <value>HOME</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>IMAGES</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="Instagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="Installments" xml:space="preserve">
+    <value>Installments</value>
+  </data>
+  <data name="JOD" xml:space="preserve">
+    <value>JOD</value>
+  </data>
+  <data name="Kitchen" xml:space="preserve">
+    <value>Kitchen</value>
+  </data>
+  <data name="Land_Area" xml:space="preserve">
+    <value>Land Area</value>
+  </data>
+  <data name="Langtitle" xml:space="preserve">
+    <value>Lanquage</value>
+  </data>
+  <data name="LOCATION" xml:space="preserve">
+    <value>LOCATION</value>
+  </data>
+  <data name="LOGIN_Title" xml:space="preserve">
+    <value>LOGIN</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="Main_Category" xml:space="preserve">
+    <value>Choose your Category</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>MAP</value>
+  </data>
+  <data name="mediator" xml:space="preserve">
+    <value>Proker</value>
+  </data>
+	<data name="Owner" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+	<data name="Proker" xml:space="preserve">
+    <value>Proker</value>
+  </data>
+	<data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+	<data name="type_of_advertisment" xml:space="preserve">
+    <value>Type Of Advertisment</value>
+  </data>
+	<data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="meter2" xml:space="preserve">
+    <value>m2</value>
+  </data>
+  <data name="MORE" xml:space="preserve">
+    <value>MORE</value>
+  </data>
+  <data name="MORE_Title" xml:space="preserve">
+    <value>MORE</value>
+  </data>
+  <data name="MyAds" xml:space="preserve">
+    <value>MY ADVERTISMENT</value>
+  </data>
+  <data name="MyFAVORITE" xml:space="preserve">
+    <value>MY FAVORITE</value>
+  </data>
+  <data name="MyINTERSTED" xml:space="preserve">
+    <value>MY INTERSTED</value>
+  </data>
+  <data name="MY_ADVERTISMENT_Title" xml:space="preserve">
+    <value>MY ADVERTISMENT</value>
+  </data>
+  <data name="MY_FAVORITE_Title" xml:space="preserve">
+    <value>MY FAVORITE</value>
+  </data>
+  <data name="MY_INTERESTED_Title" xml:space="preserve">
+    <value>MY INTERESTED</value>
+  </data>
+  <data name="Need_maintenace" xml:space="preserve">
+    <value>Need to maintenace</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="NOTIFICATIONS" xml:space="preserve">
+    <value>NOTIFICATIONS</value>
+  </data>
+  <data name="NOTIFICATION_Title" xml:space="preserve">
+    <value>NOTIFICATIONS</value>
+  </data>
+  <data name="No_master_bath_room" xml:space="preserve">
+    <value>Number of master bathroom</value>
+  </data>
+  <data name="No_normal_bath_room" xml:space="preserve">
+    <value>Number of bathroom</value>
+  </data>
+  <data name="Number_door" xml:space="preserve">
+    <value>Number of door</value>
+  </data>
+	<data name="Number_of_Appartment" xml:space="preserve">
+    <value>Number of Apartments</value>
+  </data>
+	<data name="Size_per_apartment" xml:space="preserve">
+    <value>Size per Apartment</value>
+  </data>
+  <data name="Number_of_balcons" xml:space="preserve">
+    <value>Number of balcons</value>
+  </data>
+  <data name="Number_of_floor" xml:space="preserve">
+    <value>Number of floor</value>
+  </data>
+  <data name="Number_of_offices" xml:space="preserve">
+    <value>Number of offices</value>
+  </data>
+	<data name="Number_of_room" xml:space="preserve">
+    <value>Number of Bedroom</value>
+  </data>
+	<data name="Number_of_office_room" xml:space="preserve">
+    <value>Number of office room</value>
+  </data>
+  <data name="Number_of_shop" xml:space="preserve">
+    <value>Number of shop</value>
+  </data>
+  <data name="Number_of_store" xml:space="preserve">
+    <value>Number of store</value>
+  </data>
+  <data name="Number_Street" xml:space="preserve">
+    <value>Number of Street</value>
+  </data>
+  <data name="Old" xml:space="preserve">
+    <value>Old</value>
+  </data>
+  <data name="Organization_type" xml:space="preserve">
+    <value>Land Regulation</value>
+  </data>
+  <data name="Organizer" xml:space="preserve">
+    <value>Regulation</value>
+  </data>
+	<data name="Owner" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+	<data name="Select_Regulation_Type" xml:space="preserve">
+    <value>Select Regulation Type</value>
+  </data>
+	<data name="Regulation_Type" xml:space="preserve">
+    <value>Regulation Type</value>
+  </data>
+	<data name="Page_Direction" xml:space="preserve">
+    <value>LeftToRight</value>
+  </data>
+	<data name="no_of_days_for_advs" xml:space="preserve">
+    <value>days must be between (1-100) days</value>
+  </data>
+  <data name="parking" xml:space="preserve">
+    <value>parking</value>
+  </data>
+  <data name="PASSWORD" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PAYMENT" xml:space="preserve">
+    <value>PAYMENT</value>
+  </data>
+  <data name="Payment_and_submit" xml:space="preserve">
+    <value>Payment and submit</value>
+  </data>
+  <data name="Payment_Type" xml:space="preserve">
+    <value>Payment Method</value>
+  </data>
+  <data name="PHONE" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Price_From" xml:space="preserve">
+    <value>Price From/ JOD</value>
+  </data>
+  <data name="Price_To" xml:space="preserve">
+    <value>Price To/ JOD</value>
+  </data>
+  <data name="PROFILE" xml:space="preserve">
+    <value>PROFILE</value>
+  </data>
+  <data name="Profile_Title" xml:space="preserve">
+    <value>MY PROFILE</value>
+  </data>
+  <data name="rdblangar" xml:space="preserve">
+    <value>Arabic</value>
+  </data>
+  <data name="rdblangen" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Sign up now</value>
+  </data>
+  <data name="Register_Name" xml:space="preserve">
+    <value>NAME</value>
+  </data>
+  <data name="Register_Title" xml:space="preserve">
+    <value>SIGN UP</value>
+  </data>
+  <data name="RENEWAL" xml:space="preserve">
+    <value>RENEWAL</value>
+  </data>
+  <data name="RESET" xml:space="preserve">
+    <value>RESET</value>
+  </data>
+  <data name="Roof" xml:space="preserve">
+    <value>Roof</value>
+  </data>
+  <data name="SEARCH" xml:space="preserve">
+    <value>SEARCH</value>
+  </data>
+  <data name="Select_City" xml:space="preserve">
+    <value>Select City</value>
+  </data>
+  <data name="Select_Region" xml:space="preserve">
+    <value>Select Region</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>SEND</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
+  <data name="special" xml:space="preserve">
+    <value>Special</value>
+  </data>
+  <data name="Street_categoury" xml:space="preserve">
+    <value>Street category</value>
+  </data>
+  <data name="Sub" xml:space="preserve">
+    <value>Sub</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Sub_Category" xml:space="preserve">
+    <value>Choose sub Category</value>
+  </data>
+  <data name="TextSize" xml:space="preserve">
+    <value>Text Size</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Type_advertisment" xml:space="preserve">
+    <value>Type of advertisment</value>
+  </data>
+  <data name="Unique" xml:space="preserve">
+    <value>Unique</value>
+  </data>
+  <data name="Unorganizer" xml:space="preserve">
+    <value>Nonregulation</value>
+  </data>
+  <data name="Update_Password" xml:space="preserve">
+    <value>UPDATE</value>
+  </data>
+  <data name="UPGRADE" xml:space="preserve">
+    <value>UPGRADE</value>
+  </data>
+  <data name="upload_photo" xml:space="preserve">
+    <value>Upload Photo</value>
+  </data>
+  <data name="Upper_block" xml:space="preserve">
+    <value>Upper block</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>VIEWS</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+ <data name="Adv_type_Normal" xml:space="preserve">
+    <value>Its free Advertisement and will be publish for 100 days.</value>
+  </data>
+</root>

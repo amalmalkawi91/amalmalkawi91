@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DAA957CA-A064-4717-BB7A-7679DB7CD3E7}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{6968b3a4-1835-46a3-ac5c-1ae33b475983}</TemplateGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Aquary.Droid</RootNamespace>
+    <AssemblyName>Aquary.Android</AssemblyName>
+    <Deterministic>True</Deterministic>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
+    <MandroidI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Plugin.CurrentActivity">
+      <Version>2.1.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.Multilingual">
+      <Version>1.1.6-beta</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.Share">
+      <Version>7.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
+      <Version>3.1.1.1-beta</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Forms.Maps">
+      <Version>5.0.0.2012</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.PancakeView">
+      <Version>2.3.0.763-beta</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomFrameRenderer.cs" />
+    <Compile Include="ImageHelpers.cs" />
+    <Compile Include="ImageSourceExtensions.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="MediaService.cs" />
+    <Compile Include="RadioButtonRenderer.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoundedEntryRendererAndroid.cs" />
+    <Compile Include="RoundedPickerRendererAndroid.cs.cs" />
+    <Compile Include="TodoShellItemRenderer.cs" />
+    <Compile Include="TodoShellRenderer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon_round.xml" />
+    <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
+    <AndroidResource Include="Resources\drawable\icon_about.png" />
+    <AndroidResource Include="Resources\drawable\icon_feed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aquary\Aquary.csproj">
+      <Project>{466B5B22-CA45-4DFF-80CD-29148DC64C33}</Project>
+      <Name>Aquary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon_plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\location.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="location.png" />
+    <AndroidResource Include="Resources\drawable\waterfront.jpg" />
+    <AndroidResource Include="Resources\drawable\No_bath.jpg" />
+    <AndroidResource Include="Resources\drawable\No_bed.jpg" />
+    <AndroidResource Include="Resources\drawable\land_area.jpg" />
+    <AndroidResource Include="Resources\drawable\building_area.jpg" />
+    <AndroidResource Include="Resources\drawable\add.png" />
+    <AndroidResource Include="Resources\drawable\home.png" />
+    <AndroidResource Include="Resources\drawable\login.png" />
+    <AndroidResource Include="Resources\drawable\notification.png" />
+    <AndroidResource Include="Resources\drawable\call.png" />
+    <AndroidResource Include="Resources\drawable\lock.png" />
+    <AndroidResource Include="Resources\drawable\Main_Logo.png" />
+    <AndroidResource Include="Resources\drawable\Email.png" />
+    <AndroidResource Include="Resources\drawable\Password.png" />
+    <AndroidResource Include="Resources\drawable\Name.png" />
+    <AndroidResource Include="Resources\drawable\Phone.png" />
+    <AndroidResource Include="Resources\drawable\My_Adv.png" />
+    <AndroidResource Include="Resources\drawable\My_intrested.png" />
+    <AndroidResource Include="Resources\drawable\My_Fav.png" />
+    <AndroidResource Include="Resources\drawable\Logout.png" />
+    <AndroidResource Include="Resources\drawable\Gray_Location.png" />
+    <AndroidResource Include="Resources\drawable\More.png" />
+    <AndroidResource Include="Resources\drawable\Filter.png" />
+    <AndroidResource Include="Resources\drawable\Setting.png" />
+    <AndroidResource Include="Resources\drawable\Suggest.png" />
+    <AndroidResource Include="Resources\drawable\Contact_us.png" />
+    <AndroidResource Include="Resources\drawable\email_small.png" />
+    <AndroidResource Include="Resources\drawable\need_maintainance.png" />
+    <AndroidResource Include="Resources\drawable\master_bath.png" />
+    <AndroidResource Include="Resources\drawable\building_age.png" />
+    <AndroidResource Include="Resources\drawable\land_regulation.png" />
+    <AndroidResource Include="Resources\drawable\services.png" />
+    <AndroidResource Include="Resources\drawable\No_road.png" />
+    <AndroidResource Include="Resources\drawable\payment_methode.png" />
+    <AndroidResource Include="Resources\drawable\Advertiser.png" />
+    <AndroidResource Include="Resources\drawable\building_condition.png" />
+    <AndroidResource Include="Resources\drawable\parking.png" />
+    <AndroidResource Include="Resources\drawable\garden.png" />
+    <AndroidResource Include="Resources\drawable\elevator.png" />
+    <AndroidResource Include="Resources\drawable\No_floor.png" />
+    <AndroidResource Include="Resources\drawable\annule_incom.png" />
+    <AndroidResource Include="Resources\drawable\No_apartment.png" />
+    <AndroidResource Include="Resources\drawable\No_door.png" />
+    <AndroidResource Include="Resources\drawable\roof.png" />
+    <AndroidResource Include="Resources\drawable\furntire.png" />
+    <AndroidResource Include="Resources\drawable\balcony.png" />
+    <AndroidResource Include="Resources\drawable\pool.png" />
+    <AndroidResource Include="Resources\drawable\carps.png" />
+    <AndroidResource Include="Resources\drawable\apartment.png" />
+    <AndroidResource Include="Resources\drawable\entertament.png" />
+    <AndroidResource Include="Resources\drawable\has_building.png" />
+    <AndroidResource Include="Resources\drawable\No_office.png" />
+    <AndroidResource Include="Resources\drawable\No_shop.png" />
+    <AndroidResource Include="Resources\drawable\icon_bookmark.png" />
+    <AndroidResource Include="Resources\drawable\icon_Fav.png" />
+    <AndroidResource Include="Resources\drawable\icon_Filled_favorite.png" />
+    <AndroidResource Include="Resources\drawable\eye.png" />
+    <AndroidResource Include="Resources\drawable\editing.png" />
+    <AndroidResource Include="Resources\drawable\Renewal.png" />
+    <AndroidResource Include="Resources\drawable\upgrade.png" />
+    <AndroidResource Include="Resources\drawable\edit_profile.png" />
+    <AndroidResource Include="Resources\drawable\intrested_fill.png" />
+    <AndroidResource Include="Resources\drawable\Share.png" />
+    <AndroidResource Include="Resources\drawable\send.png" />
+    <AndroidResource Include="Resources\drawable\email_deco.png" />
+    <AndroidResource Include="Resources\drawable\facebook.png" />
+    <AndroidResource Include="Resources\drawable\instagram.png" />
+    <AndroidResource Include="Resources\drawable\snapchat.png" />
+    <AndroidResource Include="Resources\drawable\youtube.png" />
+    <AndroidResource Include="Resources\drawable\Register.png" />
+    <AndroidResource Include="Resources\drawable\camera.png" />
+    <AndroidResource Include="Resources\drawable\Upload_Photo.png" />
+    <AndroidResource Include="Resources\drawable\accept.png" />
+    <AndroidResource Include="Resources\drawable\pending.png" />
+    <AndroidResource Include="Resources\drawable\Fav_Black.png" />
+    <AndroidResource Include="Resources\drawable\Fav_Fill_Black.png" />
+    <AndroidResource Include="Resources\drawable\Intrested_black.png" />
+    <AndroidResource Include="Resources\drawable\empty_share.png" />
+    <AndroidResource Include="Resources\Layout\BottomTabLayout.axml" />
+    <AndroidResource Include="Resources\Layout\Tabbar.axml" />
+    <AndroidResource Include="Resources\Layout\Toolbar.axml" />
+    <AndroidResource Include="Resources\drawable\back.png" />
+    <AndroidResource Include="Resources\drawable\appicon.jpg" />
+    <AndroidResource Include="Resources\mipmap-hdpi\icon.jpg" />
+    <AndroidResource Include="Resources\mipmap-mdpi\icon.jpg" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\icon.jpg" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\icon.jpg" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.jpg" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable\splashscreen.png" />
+    <AndroidResource Include="Resources\drawable\footer.png" />
+    <AndroidResource Include="Resources\drawable\icon_Home_Gray.png" />
+    <AndroidResource Include="Resources\drawable\icon_Login_blue.png" />
+    <AndroidResource Include="Resources\drawable\icon_Menu_Blue.png" />
+    <AndroidResource Include="Resources\drawable\outline_arrow_drop_down_black_48dp22.png" />
+    <AndroidResource Include="Resources\drawable\outline_arrow_drop_down_black_48dp11.png" />
+    <AndroidResource Include="Resources\drawable\UnselectedRadioBttn.png" />
+    <AndroidResource Include="Resources\drawable\SelectedRadioBttn.png" />
+    <AndroidResource Include="Resources\drawable\UnselectedRadioBttn_3x.png" />
+    <AndroidResource Include="Resources\drawable\SelectedRadioBttn_2x.png" />
+    <AndroidResource Include="Resources\drawable\SelectedRadioBttn_3x.png" />
+    <AndroidResource Include="Resources\drawable\UnselectedRadioBttn_2x.png" />
+    <AndroidResource Include="Resources\drawable\outline_remove_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable\outline_add_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable\blue_plusx.png" />
+    <AndroidResource Include="Resources\drawable\blue_minus_3x.png" />
+    <AndroidResource Include="Resources\drawable\blue_minus_x.png" />
+    <AndroidResource Include="Resources\drawable\blue_plus_2x.png" />
+    <AndroidResource Include="Resources\drawable\blue_plus_3x.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionAquaryAndroidHideInfoBar="True" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="Aquary.Views.Ads_Deco_View_Details"
+              xmlns:local="clr-namespace:CustomRendererDemo"
+                      xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+              Shell.TabBarIsVisible="false"
+                xmlns:i18n="clr-namespace:Aquary.Helper"
+              Shell.NavBarIsVisible="false"
+               Title="{Binding Title}">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="900" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout  Padding="5">
+            <!-- <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">-->
+        <CarouselView x:Name="collectionView_Photo">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+
+                    <Image  Source="{Binding photo_path}" WidthRequest="400" HeightRequest="700" Aspect="AspectFill" HorizontalOptions="Center"></Image>
+
+
+
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+            <StackLayout Orientation="Horizontal"  Spacing="180" TranslationY="-290" >
+                <StackLayout Orientation="Horizontal" Padding="5,0,0,0">
+                    <StackLayout>
+
+                        <Frame CornerRadius="100" Padding="0"  HorizontalOptions="Center" 
+                   
+              IsClippedToBounds="True" BackgroundColor="Transparent">
+                            <ImageButton x:Name="Icon_back" Source="back.png"   WidthRequest="25" HeightRequest="20"  HorizontalOptions="Center" Clicked="Icon_back_Clicked"  BackgroundColor="Transparent"></ImageButton>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame CornerRadius="100" Padding="0"  HorizontalOptions="Center" 
+                   
+              IsClippedToBounds="True" BackgroundColor="Transparent">
+                            <ImageButton x:Name="Icon_Fav" Source="Fav_Black.png"   WidthRequest="25" HeightRequest="25"  HorizontalOptions="Center" Clicked="Icon_Fav_Clicked"  BackgroundColor="Transparent"></ImageButton>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="0,0,0,5">
+                    <StackLayout>
+                        <Frame CornerRadius="100" Padding="0"  HorizontalOptions="Center" BackgroundColor="Transparent"  
+                  
+              IsClippedToBounds="True" >
+                            <StackLayout Orientation="Vertical" Spacing="10">
+                                <ImageButton x:Name="Icon_Intres" Source="Intrested_black.png"  WidthRequest="25" HeightRequest="25"  HorizontalOptions="Center" BackgroundColor="Transparent" Clicked="Add_Inter_Clicked" ></ImageButton>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Frame CornerRadius="100" Padding="0"  HorizontalOptions="Center"  
+                    BackgroundColor="Transparent"
+              IsClippedToBounds="True" >
+                            <StackLayout Orientation="Vertical" >
+                                <ImageButton x:Name="Icon_share" Source="empty_share.png"  WidthRequest="25" HeightRequest="25"  HorizontalOptions="Center" BackgroundColor="Transparent"  Clicked="ImageButton_Clicked" ></ImageButton>
+
+
+                            </StackLayout>
+
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Padding="0">
+            <pancake:PancakeView 
+                     BackgroundColor="White"
+                     CornerRadius="40,40,0,0" TranslationY="-150" HeightRequest="800">
+                    <StackLayout  x:Name="Menu_Scroll_Lang">
+                    
+                    <StackLayout Padding="10,10,10,20">
+              <Label x:Name="Lbltitle" MaxLines="1"  WidthRequest="180" FontSize="22"  HorizontalTextAlignment="Start" FontFamily="Silka" TextColor="#000000"  />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"   Margin="0,5,0,5" Padding="10,0,0,0" TranslationY="-20">
+                <Image Source="Gray_Location.png" WidthRequest="24" HeightRequest="24" />
+                <Label x:Name="LblArea"    FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"  HorizontalTextAlignment="start"/>
+
+            </StackLayout>
+
+
+
+                        <Frame   CornerRadius="20" TranslationY="-20"  Margin="2,2,2,2">
+                            <StackLayout Orientation="Horizontal" Spacing="15" Padding="1,1,1,1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame   CornerRadius="20" Padding="10,0,0,0" >
+                        <Image x:Name="Register_Logo"  WidthRequest="59" HeightRequest="59" Aspect="AspectFill" HorizontalOptions="Start"></Image>
+                    </Frame>
+                    <StackLayout Orientation="Vertical" Padding="5" >
+                        <Label x:Name="LblRegistername"    FontSize="18" TextColor="Black"  HorizontalTextAlignment="left" TextTransform="Uppercase" FontFamily="Silka"/>
+                        <Label x:Name="LblRegisteremail"    FontSize="12" TextColor="#6C6C6C" HorizontalTextAlignment="left" FontFamily="Silka" HeightRequest="14" WidthRequest="157"/>
+                        <Label x:Name="LblRegisterphone"    FontSize="Small" TextColor="Black" HorizontalTextAlignment="center" IsVisible="false"/>
+                    </StackLayout>
+
+                                <ImageButton Source="call.png" WidthRequest="35" HeightRequest="35" HorizontalOptions="End" Clicked="btnCall_Click" BackgroundColor="Transparent"/>
+
+                </StackLayout>
+            </Frame>
+            <!-- <Image x:Name="Register_Logo" WidthRequest="100"  HeightRequest="100" HorizontalOptions="Start"></Image>-->
+
+
+            <Frame   CornerRadius="20" HeightRequest="50" TranslationY="-20">
+               
+
+                    <StackLayout Orientation="Horizontal" Padding="5" Spacing="5">
+
+                                <ImageButton x:Name="Share_Email" HorizontalOptions="FillAndExpand" Source="email_deco.png" WidthRequest="35" HeightRequest="35" BackgroundColor="Transparent" Clicked="ImageButton_Clicked" />
+                                <ImageButton x:Name="Share_Youtube" HorizontalOptions="FillAndExpand" Source="youtube.png" WidthRequest="35" HeightRequest="35" BackgroundColor="Transparent" Clicked="ImageButton_Clicked"/>
+                                <ImageButton  x:Name="Share_Face" HorizontalOptions="FillAndExpand" Source="facebook.png" WidthRequest="35" HeightRequest="35" BackgroundColor="Transparent" Clicked="ImageButton_Clicked"/>
+                                <ImageButton x:Name="Share_Insta" HorizontalOptions="FillAndExpand" Source="instagram.png" WidthRequest="35" HeightRequest="35" BackgroundColor="Transparent" Clicked="ImageButton_Clicked"/>
+                                <ImageButton x:Name="Share_snap" HorizontalOptions="FillAndExpand" Source="snapchat.png" WidthRequest="35" HeightRequest="35" BackgroundColor="Transparent" Clicked="ImageButton_Clicked"/>
+                </StackLayout>
+                
+            </Frame>
+
+
+
+
+            <StackLayout Orientation="Horizontal" Spacing="5" Margin="0,5,0,10" TranslationY="-20">
+
+                            <Button x:Name="Btn_DESCRIPTION" Text="{i18n:Translate DESCRIPTION}"  HorizontalOptions="FillAndExpand"    HeightRequest="35"     VerticalOptions = "Start"  BackgroundColor="#1269C8" TextColor="White"  BorderWidth="1" BorderRadius="40" BorderColor="#1269C8" Clicked="Btn_DESCRIPTION_Clicked" FontFamily="Silka" FontSize="14" Padding="2,2,2,2"></Button>
+                            <Button x:Name="Btn_LOCATION"   Text="{i18n:Translate LOCATION}"     HorizontalOptions="FillAndExpand"   HeightRequest="35"     VerticalOptions = "Start"   BackgroundColor="White" TextColor="#1269C8"  BorderWidth="1" BorderRadius="40" BorderColor="#1269C8" Clicked="Btn_LOCATION_Clicked" FontFamily="Silka" FontSize="14" Padding="2,2,2,2"></Button>
+                            <Button x:Name="Btn_COMMENTS"   Text="{i18n:Translate COMMENTS}"     HorizontalOptions="FillAndExpand"   HeightRequest="35"  VerticalOptions = "Start"   BackgroundColor="White" TextColor="#1269C8"  BorderWidth="1" BorderRadius="40" BorderColor="#1269C8" Clicked="Btn_COMMENTS_Clicked" FontFamily="Silka" FontSize="14" Padding="2,2,2,2"></Button>
+
+            </StackLayout>
+
+
+                            <ScrollView Grid.Row="1" TranslationY="-20">
+
+
+
+                                <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                                    <StackLayout x:Name="General_tab" Padding="5" Spacing="1" IsVisible="false">
+
+
+                                        <Button x:Name="btn_Fav" Text="Add to favorite"  HorizontalOptions="Fill"       VerticalOptions = "Start"  BackgroundColor="White" TextColor="Blue"  BorderWidth="1" BorderRadius="40" BorderColor="CornflowerBlue" Clicked="Add_Fav_Clicked"></Button>
+                                        <Button x:Name="btn_Inter" Text="Add to Interested"  HorizontalOptions="Fill"       VerticalOptions = "Start"  BackgroundColor="White" TextColor="Blue"  BorderWidth="1" BorderRadius="40" BorderColor="CornflowerBlue" Clicked="Add_Inter_Clicked"></Button>
+                                        <Button Text="Share"   HorizontalOptions="Fill"       VerticalOptions = "Start"  BackgroundColor="White" TextColor="Blue"  BorderWidth="1" BorderRadius="40" BorderColor="CornflowerBlue" Clicked="Add_Fav_Clicked"></Button>
+
+
+
+                                        <Label Text="Published Date" FontSize="Medium" />
+                                        <Label x:Name="inserted_date"  FontSize="Medium"/>
+                                        <Label Text="Phone" FontSize="Medium" />
+                                        <Label x:Name="Owner_Phone" Text="" FontSize="Medium" />
+
+
+                                        <Label x:Name="Facebook" Text="Facebook" FontSize="Medium" />
+                                        <Label x:Name="Facebook_Val" Text="" FontSize="Medium" />
+
+                                        <Label x:Name="Instagram" Text="Instagram" FontSize="Medium" />
+                                        <Label x:Name="Instagram_Val" Text="" FontSize="Medium" />
+
+                                        <Label x:Name="Email" Text="Email" FontSize="Medium" />
+                                        <Label x:Name="Email_Val" Text="" FontSize="Medium" />
+
+                                        <Label x:Name="Logo_Val" Text="" FontSize="Medium" />
+
+                                    </StackLayout>
+
+
+                                    <StackLayout x:Name="Description_tab" Padding="5" Spacing="1" IsVisible="false">
+
+                                        <Label x:Name="comp_description_result"  HeightRequest="200" WidthRequest="200" FontSize="16" TextColor="#000000" FontFamily="Silka"/>
+
+                                    </StackLayout>
+
+                                    <StackLayout x:Name="Location_tab" Padding="5" Spacing="1" IsVisible="false">
+
+                                        <Label  Text="Map" FontSize="Medium" />
+                                        <map:Map
+                x:Name="mapObject"             
+                MapType="Street"              
+                        WidthRequest="200"
+                        HeightRequest="300"/>
+
+                                        <StackLayout
+                BackgroundColor="White"
+                Padding="5"
+                Spacing="2"
+                Grid.Row="5">
+                                            <Label
+                    x:Name="addressEntry"
+                    />
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                    <StackLayout x:Name="Comment_tab" Padding="5" Spacing="1" IsVisible="false">
+
+                                        <CollectionView x:Name="collectionView"
+          SelectionMode="Single" >
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Padding="10">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+                                                        <StackLayout>
+                                                            <StackLayout Orientation="Horizontal" Spacing="20" Padding="10">
+
+                                                                <Frame CornerRadius="100" Padding="0"  HorizontalOptions="Center"
+                                IsClippedToBounds="True">
+                                                                    <Image Source="{Binding register_logo}"  Aspect="AspectFill" WidthRequest="80" HeightRequest="80" />
+                                                                </Frame>
+
+                                                                <StackLayout Orientation="Vertical" Spacing="0" Padding="0">
+
+                                                                    <Label Text="{Binding register_name}"   FontSize="16" TextColor="Black"   HorizontalTextAlignment="Start" FontFamily="Silka"/>
+                                                                    <Label Grid.Column="1"   Text="{Binding comment_time}"  FontAttributes="Bold" />
+
+
+                                                                </StackLayout>
+
+                                                            </StackLayout>
+
+
+                                                            <StackLayout Padding="85,1,5,5">
+                                                                <Label Grid.Row="8" Text="{Binding description}"   />
+                                                            </StackLayout>
+                                                        </StackLayout>
+
+                                                    </Grid>
+
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+
+                                        </CollectionView>
+
+                                        <StackLayout Orientation="Horizontal" Spacing="25" HorizontalOptions="CenterAndExpand">
+                                            <!--  <Editor x:Name="txt_Comment" Placeholder="Write comments" AutoSize="TextChanges" FontSize="Medium" Margin="0"  />-->
+                                            <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="335" BorderColor="Gray">
+                                                <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,10,0,0">
+                                                    <local:RoundedEntry  x:Name="txt_Comment" FontSize="16"  BackgroundColor="White" TextColor="#555555"  FontFamily="Silka"  Placeholder="comment Here" WidthRequest="335" HeightRequest="50"  />
+                                                </StackLayout>
+                                            </Frame>
+
+
+                                            <Frame CornerRadius="100" Padding="0"  HorizontalOptions="Center" 
+                   WidthRequest="50" HeightRequest="50" BackgroundColor="#1269C8"
+              IsClippedToBounds="True">
+                                                <StackLayout Orientation="Horizontal" Spacing="25">
+                                                    <ImageButton  Source="send.png"  WidthRequest="35" HeightRequest="35" Padding="10,5,5,5" HorizontalOptions="Center" BackgroundColor="Transparent" Clicked="Comment_Clicked"></ImageButton>
+
+
+                                                </StackLayout>
+
+                                            </Frame>
+                                        </StackLayout>
+
+                                    </StackLayout>
+                                </StackLayout>
+                            </ScrollView>
+                      
+
+       
+                </StackLayout>
+      
+    </pancake:PancakeView>
+        </StackLayout>
+    </StackLayout>
+    </Grid>   
+    
+</ContentPage>

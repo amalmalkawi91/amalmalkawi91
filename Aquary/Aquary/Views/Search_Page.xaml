@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aquary.Views.Search_Page"
+             xmlns:local2="clr-namespace:CustomRendererDemo.Droid"
+              xmlns:local="clr-namespace:CustomRendererDemo"
+               Shell.NavBarHasShadow="False"
+             Shell.TabBarIsVisible="False"
+               BackgroundColor="#ECECEC"
+                xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+              xmlns:i18n="clr-namespace:Aquary.Helper"
+               Title="{i18n:Translate Filter_Title}">
+    
+    <StackLayout    WidthRequest="20">
+        <pancake:PancakeView Padding="10"
+                     BackgroundColor="#FFFFFF"
+                                   HeightRequest="1000"
+                             WidthRequest="20"
+                     CornerRadius="40,40,0,0">
+            <ScrollView Grid.Row="1">
+                <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="20" Spacing="30" x:Name="Menu_Scroll_Lang">
+
+
+        <Frame CornerRadius="40"                                              
+                        HasShadow="True"   
+                        IsClippedToBounds="True"
+                        Padding="0"                 
+                       HeightRequest="50"
+                       WidthRequest="400" BorderColor="#D0D0D0">
+
+                        <local2:RoundedPicker  x:Name="Category_Val" FontSize="16"  HeightRequest="50" Title="{i18n:Translate Main_Category}" ItemDisplayBinding="{Binding service_en}" BackgroundColor="White" TextColor="#555555"  FontFamily="Silka" SelectedIndexChanged="Category_Val_SelectedIndexChanged"   />
+
+        </Frame>
+
+
+        <Frame CornerRadius="40"                                              
+                        HasShadow="True"   
+                        IsClippedToBounds="True"
+                        Padding="0"                 
+                       HeightRequest="50"
+                       WidthRequest="400" BorderColor="#D0D0D0">
+
+                        <local2:RoundedPicker  x:Name="Sub_Category_val" FontSize="16" Title="{i18n:Translate Sub_Category}" ItemDisplayBinding="{Binding service_en}" BackgroundColor="White" TextColor="#555555"  FontFamily="Silka" SelectedIndexChanged="Sub_Category_val_SelectedIndexChanged"   />
+
+        </Frame>
+
+        <Frame CornerRadius="40"                                              
+                        HasShadow="True"   
+                        IsClippedToBounds="True"
+                        Padding="0"                 
+                       HeightRequest="50"
+                       WidthRequest="400" BorderColor="#D0D0D0">
+
+                        <local2:RoundedPicker  x:Name="City_Val" FontSize="16" Title="{i18n:Translate Select_City}" ItemDisplayBinding="{Binding name_en}" BackgroundColor="White" TextColor="#555555"  FontFamily="Silka" SelectedIndexChanged="City_Val_SelectedIndexChanged"   />
+
+        </Frame>
+
+        <Frame CornerRadius="40"                                              
+                        HasShadow="True"   
+                        IsClippedToBounds="True"
+                        Padding="0"                 
+                       HeightRequest="50"
+                       WidthRequest="400" BorderColor="#D0D0D0">
+
+                        <local2:RoundedPicker  x:Name="Region_val" FontSize="16" Title="{i18n:Translate Select_Region}" ItemDisplayBinding="{Binding name_en}" BackgroundColor="White" TextColor="#555555"  FontFamily="Silka" SelectedIndexChanged="Region_val_SelectedIndexChanged"   />
+
+        </Frame>
+
+     
+        <StackLayout HorizontalOptions="Start">
+                        <Label  Text="{i18n:Translate Price_From}" FontSize="20" TextColor="#555555"  FontFamily="Silka"/>
+        </StackLayout>
+
+      <StackLayout>
+                       
+                        <Slider x:Name="Price_From" ValueChanged="Slider_ValueChanged"
+        Maximum="500000"  MaximumTrackColor="Gray" MinimumTrackColor="blue" ThumbColor="#1269C8"
+        Minimum="100"/>
+
+                    <Label x:Name="LblSlider_Price_To" Text=" / JOD" FontSize="16" TextColor="blue"  FontFamily="Silka"/>
+
+        </StackLayout>
+                    <StackLayout HorizontalOptions="Start">
+                        <Label  Text="{i18n:Translate Price_To}" FontSize="20" TextColor="#555555"  FontFamily="Silka"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand">
+          
+        <Slider x:Name="Slider_Price_From" ValueChanged="Slider_Price_From_ValueChanged"
+        Maximum="500000"  MaximumTrackColor="Gray" MinimumTrackColor="blue" ThumbColor="#1269C8"
+        Minimum="100"/>
+            <Label x:Name="LblSlider_Price_From"   Text=" / JOD" FontSize="16" TextColor="blue"  FontFamily="Silka"/>
+
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Margin="20" Spacing="10">
+
+
+                        <Button Text="{i18n:Translate SEARCH}"  HorizontalOptions="FillAndExpand"   VerticalOptions = "Start" Clicked="Search_Result_Clicked" BackgroundColor="#1269C8" TextColor="White"  BorderWidth="1" BorderRadius="40" BorderColor="#1269C8"></Button>
+
+
+
+
+                        <Button Text="{i18n:Translate RESET}"  HorizontalOptions="FillAndExpand"   VerticalOptions = "Start" Clicked="RESET_Clicked" BackgroundColor="White" TextColor="#1269C8"  BorderWidth="2" BorderRadius="40" BorderColor="#1269C8"></Button>
+
+
+        </StackLayout>
+    </StackLayout>
+    </ScrollView>
+
+
+</pancake:PancakeView>
+    </StackLayout>
+
+    <!--  <ActivityIndicator x:Name="activityIndicator" Margin="0,50,0,0" VerticalOptions="Center" HorizontalOptions="Center" Color="Black" WidthRequest="30" HeightRequest="30" ></ActivityIndicator>
+                    <Label x:Name="lblLoadingText" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" Text="Loading..."></Label>
+-->
+             
+           
+ 
+</ContentPage>

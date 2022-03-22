@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+               xmlns:footer="clr-namespace:Aquary.ReusableComponents"
+               xmlns:i18n="clr-namespace:Aquary.Helper"
+             x:Class="Aquary.Views.Main_Service"
+                Title="{i18n:Translate Home_Title}"
+             Shell.BackgroundColor="#ECECEC"       
+             Shell.TitleColor="#000000"
+              Shell.NavBarIsVisible="true"  
+          Shell.TabBarIsVisible="False"
+               Shell.NavBarHasShadow="False"
+              BackgroundColor="#ECECEC"
+                  xmlns:converters="clr-namespace:Aquary.Converters">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="Filter.png" Text="Search"  Clicked="Search_Clicked_1"/>
+
+
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+            <converters:LanguageConverter x:Key="langConverter" />
+        </ResourceDictionary>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid  x:Name="outerGrid" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout>
+
+            <StackLayout >
+                <pancake:PancakeView Padding="15" BackgroundColor="#FFFFFF" HeightRequest="1000" CornerRadius="40,40,0,0">
+                    <StackLayout>
+                        <ScrollView Grid.Row="1">
+                            <StackLayout >
+                                <ContentView x:Name="popupLoginView" BackgroundColor="#C0808080" Padding="10, 0" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                        <StackLayout Orientation="Vertical" BackgroundColor="White">
+
+
+                                            <Picker Margin="20,20,20,10" x:Name="Category_Val" HorizontalOptions="FillAndExpand" Title="Select Category" ItemDisplayBinding="{Binding service_en}" SelectedIndexChanged="Category_Val_SelectedIndexChanged" StyleClass="fieldForm"/>
+
+
+                                            <Picker Margin="20,20,20,10" x:Name="Sub_Category_val" HorizontalOptions="FillAndExpand" Title="Select sub Category" ItemDisplayBinding="{Binding service_en}" SelectedIndexChanged="Sub_Category_val_SelectedIndexChanged"/>
+
+
+                                            <Picker Margin="20,20,20,10" x:Name="City_Val" HorizontalOptions="FillAndExpand" Title="Select City" ItemDisplayBinding="{Binding name_en}" SelectedIndexChanged="City_Val_SelectedIndexChanged" StyleClass="fieldForm"/>
+
+
+
+                                            <Picker Margin="20,20,20,10" x:Name="Region_val" HorizontalOptions="FillAndExpand" Title="Select Region" ItemDisplayBinding="{Binding name_en}" SelectedIndexChanged="Region_val_SelectedIndexChanged"/>
+
+                                            <Label Margin="20,20,20,10" Text="Price" FontSize="Medium" />
+
+                                            <Button Margin="20,0,20,0" Text="Search" Clicked="Search_Result_Clicked"></Button>
+
+
+
+                                            <!--  <ActivityIndicator x:Name="activityIndicator" Margin="0,50,0,0" VerticalOptions="Center" HorizontalOptions="Center" Color="Black" WidthRequest="30" HeightRequest="30" ></ActivityIndicator>
+                    <Label x:Name="lblLoadingText" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" Text="Loading..."></Label>
+-->
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ContentView>
+                           
+                                <Grid Padding="13,10,10,0" >
+                                    <CarouselView x:Name="Home_ads_photo" HeightRequest="100" WidthRequest="360" BackgroundColor="Transparent">
+                                        <CarouselView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame CornerRadius="20" Padding="0" HorizontalOptions="Center" IsClippedToBounds="True" HeightRequest="100" WidthRequest="350" BackgroundColor="Transparent">
+                                                    <Image  Source="{Binding image}" WidthRequest="300" HeightRequest="100" Aspect="AspectFill" BackgroundColor="Transparent"></Image>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </CarouselView.ItemTemplate>
+                                    </CarouselView>
+                                </Grid>
+
+                                <CollectionView x:Name="collectionView"
+                          SelectionMode="Single"
+               SelectionChanged="CollectionViewListSelectionChanged" >
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Padding="13,20,10,0"  >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <Frame CornerRadius="20"   Padding="0"     
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="115"
+                       WidthRequest="360" >
+                                                    <Image  Source="{Binding image}" Aspect="AspectFill"></Image>
+
+
+                                                </Frame>
+                                                <!--   <Label Grid.Row="2"
+                       Text="{Binding service_en}"
+                      FontSize="20"  HorizontalTextAlignment="Center" TextTransform="Uppercase" FontFamily="Silka" TextColor="#555555"/>
+-->
+                                                <Label Grid.Row="2"
+                                            Text="{Binding .,Converter={StaticResource langConverter}}"
+                                         FontSize="16"
+                                       HorizontalTextAlignment="Center"
+                                       TextTransform="Uppercase"
+                                       FontFamily="Silka"
+                                       TextColor="#555555"/>
+
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                          
+                            </StackLayout>
+                        </ScrollView>
+                        <StackLayout>
+                            <footer:FooterTabbedBar
+            VerticalOptions="End"
+            Grid.Row="0" x:Name="footer"/>
+                        </StackLayout>
+                    </StackLayout>
+                </pancake:PancakeView>
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</ContentPage>

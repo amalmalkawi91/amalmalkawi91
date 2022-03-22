@@ -1,0 +1,890 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aquary.Views.Ads_Form"
+                  xmlns:local="clr-namespace:CustomRendererDemo"
+                xmlns:local2="clr-namespace:CustomRendererDemo.Droid"
+                 xmlns:maps="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials"
+             xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"             
+             xmlns:CV="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             xmlns:controls="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions"
+             xmlns:FFImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             xmlns:FFImageCache="clr-namespace:FFImageLoading.Cache;assembly=FFImageLoading"             
+              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"    
+             BackgroundColor="#ECECEC"
+               xmlns:i18n="clr-namespace:Aquary.Helper"
+             Shell.TabBarIsVisible="false"
+               Shell.NavBarHasShadow="False"
+              Title="{i18n:Translate Add_ads_Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CarouselViewStyle" TargetType="CV:CarouselViewControl">
+                <Setter Property="ShowIndicators" Value="True" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="AnimateTransition" Value="False" />
+            </Style>
+            <OnPlatform x:Key="cacheType" x:TypeArguments="FFImageCache:CacheType"
+                    iOS="All"
+                    Android="Memory"/>
+            <OnPlatform x:Key="downsampleWidth" x:TypeArguments="x:Double"
+                    iOS="576"
+                    Android="896"/>
+            <OnPlatform x:Key="imageHeight" x:TypeArguments="x:Double"
+                        iOS="275"
+                        Android="325"/>
+            <Style x:Key="CarouselViewPictureStyle" TargetType="FFImage:CachedImage">
+                <Setter Property="Source" Value="{Binding .}" />
+                <Setter Property="IsOpaque" Value="True" />
+                <Setter Property="InputTransparent" Value="False" />
+                <Setter Property="CacheType" Value="{StaticResource cacheType}" />
+                <Setter Property="Aspect" Value="AspectFill" />
+                <Setter Property="DownsampleWidth" Value="{StaticResource downsampleWidth}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout  x:Name="Scroll_Lang" >
+        <pancake:PancakeView Padding="10"
+                     BackgroundColor="#FFFFFF"
+                              HeightRequest="1000"
+                     CornerRadius="40,40,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                        <!--  <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
+                </ContentView>-->
+                    </StackLayout>
+                </StackLayout>
+                <ScrollView Grid.Row="1">
+                    <StackLayout x:Name="Menu_Scroll_Lang">
+                        <StackLayout x:Name="Details_tab" Padding="20" BackgroundColor="White" HorizontalOptions="FillAndExpand" Spacing="20" IsVisible="true">
+
+                            <Frame x:Name="TitleStack" CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                <StackLayout Orientation="Horizontal" Spacing="20" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="10,0">
+                                    <local:RoundedEntry x:Name="Title" FontSize="16" VerticalTextAlignment="Center" VerticalOptions="Center" BackgroundColor="Transparent"  TextColor="#555555"  FontFamily="Silka"  Placeholder="{i18n:Translate Title}" HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="CityButton_Clicked"/>
+                                </Frame.GestureRecognizers>
+                                <Grid  BackgroundColor="Transparent" ColumnSpacing="10" Padding="20,3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="CityName" Padding="0,0" FontSize="16" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" Text="{i18n:Translate Select_City}" VerticalOptions="Center"/>
+                                    <Image HeightRequest="20" Grid.Column="1" Source="outline_arrow_drop_down_black_48dp11.png" WidthRequest="20" HorizontalOptions="End"/>
+                                </Grid>
+                            </Frame>
+
+                            <StackLayout Padding="30,0" x:Name="Citypopuplayout" IsVisible="False">
+                                <ListView x:Name="City_Val" ItemTapped="SelectCity_ItemTapped" BackgroundColor="Transparent" HasUnevenRows="false"  HorizontalOptions="FillAndExpand">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Label FontAttributes="Bold" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center"  Margin="15,10,10,5" FontSize="16" Text="{Binding name_en}"/>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+
+                            <Frame CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="RegionButton_Clicked"/>
+                                </Frame.GestureRecognizers>
+                                <Grid  BackgroundColor="Transparent" ColumnSpacing="10" Padding="20,3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="RegionName" Padding="0,0" FontSize="16" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" Text="{i18n:Translate Select_Region}" VerticalOptions="Center"/>
+                                    <Image HeightRequest="20" Grid.Column="1" Source="outline_arrow_drop_down_black_48dp11.png" WidthRequest="20" HorizontalOptions="End"/>
+                                </Grid>
+                            </Frame>
+
+                            <StackLayout  Padding="20,0"  x:Name="Regionpopuplayout" IsVisible="False">
+                                <ListView x:Name="Region_Val" ItemTapped="SelectRegion_ItemTapped"  BackgroundColor="Transparent" HasUnevenRows="False" SeparatorVisibility="Default" HorizontalOptions="FillAndExpand">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Label FontAttributes="Bold" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center"  Margin="15,10,10,5" FontSize="16" Text="{Binding name_en}" />
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.Footer>
+                                        <Label />
+                                    </ListView.Footer>
+                                </ListView>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Building_Area" IsVisible="true">
+                                <Frame CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                    <Grid ColumnSpacing="10" HorizontalOptions="FillAndExpand" Padding="10,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <local:RoundedEntry  x:Name="Building_Area" VerticalTextAlignment="Center" FontSize="16" HorizontalOptions="FillAndExpand" TextColor="#555555"  FontFamily="Silka"  Placeholder="{i18n:Translate Building_Area}"   />
+                                        </StackLayout>
+                                        <Label Padding="10,0" Grid.Column="1"  TextColor="Black" FontSize="14" Text="m2" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Land_Area" IsVisible="false">
+                                <Frame CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                    <Grid ColumnSpacing="10" HorizontalOptions="FillAndExpand" Padding="10,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <local:RoundedEntry  x:Name="land_area_val" VerticalTextAlignment="Center" FontSize="16" HorizontalOptions="FillAndExpand" TextColor="#555555"  FontFamily="Silka"  Placeholder="{i18n:Translate Land_Area}"   />
+                                        </StackLayout>
+                                        <Label x:Name="LandAreaTxtName" Padding="10,0" Grid.Column="1"  TextColor="Black" FontSize="14" Text="m2" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                                <StackLayout Orientation="Horizontal" Padding="20,0,10,0" >
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="30">
+                                        <input:RadioButton x:Name="Rdbland_area_type_meter"  Text="{i18n:Translate meter2}" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="land_area_m2_clicked"/>
+                                        <input:RadioButton x:Name="Rdbland_area_type_acres" Text="{i18n:Translate Acres}" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="land_area_acr_clicked"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout >
+
+                            <StackLayout x:Name="Show_Price">
+                                <Frame CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                    <Grid ColumnSpacing="10" HorizontalOptions="FillAndExpand" Padding="10,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <local:RoundedEntry  x:Name="Price" VerticalTextAlignment="Center" FontSize="16" HorizontalOptions="FillAndExpand" TextColor="#555555"  FontFamily="Silka"  Placeholder="{i18n:Translate Price}"   />
+                                        </StackLayout>
+                                        <Label Padding="10,0" Grid.Column="1"  TextColor="Black" FontSize="14" Text="{i18n:Translate JOD}" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+
+                            <StackLayout x:Name="show_rental_period"  IsVisible="false">
+                                <Label Text="{i18n:Translate rental_period}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20">
+                                        <input:RadioButton x:Name="rdp_rental_period_Daily"  Text="{i18n:Translate Daily_Rental_Period }" Value="0"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdp_rental_period_Daily_clicked"/>
+                                        <input:RadioButton x:Name="rdp_rental_period_Monthly" Text="{i18n:Translate Monthly_Rental_Period}" Value="1" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdp_rental_period_Monthly_clicked"/>
+                                        <input:RadioButton x:Name="rdp_rental_period_Yearly" Text="{i18n:Translate Yearly_Rental_Period}" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdp_rental_period_Yearly_clicked"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Has_building" IsVisible="False">
+                                <Label Text="Has building" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="50">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="30">
+                                        <input:RadioButton x:Name="Has_building_1" Text="{i18n:Translate Yes}" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Has_building_1_clicked"/>
+                                        <input:RadioButton x:Name="Has_building_0" Text="{i18n:Translate No}" Value="0" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Has_building_0_clicked"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Farm_Building_Area" IsVisible="false">
+                                <Frame CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                    <Grid ColumnSpacing="10" HorizontalOptions="FillAndExpand" Padding="10,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <local:RoundedEntry  x:Name="Farm_Building_Area" VerticalTextAlignment="Center" FontSize="16" HorizontalOptions="FillAndExpand" TextColor="#555555"  FontFamily="Silka"  Placeholder="{i18n:Translate Building_Area}"   />
+                                        </StackLayout>
+                                        <Label Padding="10,0" Grid.Column="1"  TextColor="Black" FontSize="14" Text="m2" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Regulation_type" IsVisible="false">
+                                <Label Text="{i18n:Translate Organization_type}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20">
+                                        <input:RadioButton x:Name="Rdb_Organization_type_1"  Text="{i18n:Translate Organizer }" Value="0"   TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_Organization_type_1_clicked"/>
+                                        <input:RadioButton x:Name="Rdb_Organization_type_2" Text="{i18n:Translate Unorganizer}" Value="1" IsChecked="True" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_Organization_type_2_clicked"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                         <!--  <StackLayout x:Name="Show_Organization" IsVisible="false">
+                                <Label Text="{i18n:Translate Regulation_Type}" FontSize="Medium" />
+                                <Picker x:Name="Land_Organization_Name" HorizontalOptions="FillAndExpand" Title="{i18n:Translate Select_Regulation_Type }" ItemDisplayBinding="{Binding organizer_name_en}" SelectedIndexChanged="Land_Organization_Name_SelectedIndexChanged"/>
+                            </StackLayout>
+                            -->
+                            <StackLayout x:Name="Show_Organization" IsVisible="false">
+                                <Frame CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="RegulationButton_Clicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid  BackgroundColor="Transparent" ColumnSpacing="10" Padding="20,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="RegulationName" Text="{i18n:Translate Select_Regulation_Type}" Padding="0,0" FontSize="16" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                                        <Image HeightRequest="20" Grid.Column="1" Source="outline_arrow_drop_down_black_48dp11.png" WidthRequest="20" HorizontalOptions="End"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout Padding="30,0" x:Name="Regulationpopuplayout" IsVisible="False">
+                                <ListView x:Name="Regulation_Val" ItemTapped="SelectRegulation_ItemTapped" BackgroundColor="Transparent" HasUnevenRows="False"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Label FontAttributes="Bold" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center"  Margin="15,10,10,5" FontSize="16" Text="{Binding organizer_name_en}"/>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+
+
+
+
+                            <StackLayout x:Name="show_no_of_street" Padding="0,0,0,0" IsVisible="false" >
+                                <Label Text="{i18n:Translate Number_Street}" HorizontalOptions="Fill" FontSize="Medium"/>
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <StackLayout Orientation="Horizontal" Spacing="20">
+                                        <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                            <input:RadioButton x:Name="Rdb_Number_of_Street_0"  Text="0" Value="0"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Number_of_Street_0_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_Number_of_Street_1" Text="1" Value="1" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Number_of_Street_1_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_Number_of_Street_2"  Text="2" Value="2" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Number_of_Street_2_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_Number_of_Street_3" Text="3" Value="3" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Number_of_Street_3_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_Number_of_Street_4"  Text="4" Value="4" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Number_of_Street_4_CheckedChanged"/>
+                                        </input:RadioButtonGroupView>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout  x:Name="Show_Number_of_room" IsVisible="false">
+                                <Label Text="{i18n:Translate Number_of_room}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="Rdb_roomnumber_1"  Text="1" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Number_of_room_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_roomnumber_2" Text="2" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Number_of_room_2_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_roomnumber_3"  Text="3" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Number_of_room_3_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_roomnumber_4" Text="4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Number_of_room_4_CheckedChanged"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout  x:Name="Show_Number_of_office_room" IsVisible="false">
+                                <Label Text="{i18n:Translate Number_of_office_room}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="Rdb_officeroomnumber_1"  Text="1" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_officeroomnumber_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_officeroomnumber_2" Text="2" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_officeroomnumber_2_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_officeroomnumber_3"  Text="3" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_officeroomnumber_3_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_officeroomnumber_4" Text="4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_officeroomnumber_4_CheckedChanged"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_buiding_type" IsVisible="false">
+                                <Label Text="{i18n:Translate Appartment_type}" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="rdp_Buiding_type_1"  Text="{i18n:Translate Floor_appartment}" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdp_Buiding_type_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdp_Buiding_type_2" Text="{i18n:Translate fixed}" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdp_Buiding_type_2_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdp_Buiding_type_3"  Text="{i18n:Translate Diffrent}" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdp_Buiding_type_3_CheckedChanged"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Size_per_apartment" IsVisible="false">
+                                <Frame CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                    <Grid ColumnSpacing="10" HorizontalOptions="FillAndExpand" Padding="10,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <local:RoundedEntry  x:Name="Size_per_apartment" VerticalTextAlignment="Center" FontSize="16" HorizontalOptions="FillAndExpand" TextColor="#555555"  FontFamily="Silka"  Placeholder="{i18n:Translate Size_per_apartment}"   />
+                                        </StackLayout>
+                                        <Label Padding="10,0" Grid.Column="1"  TextColor="Black" FontSize="14" Text="m2" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Building_Area_From_To" Orientation="Horizontal" IsVisible="False">
+                                <Grid HorizontalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                                <Label Padding="8,0" Grid.Column="0" TextColor="Gray" FontSize="14" Text="From" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                <Frame Grid.Column="1" CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" >
+                                    <Grid ColumnSpacing="10" HorizontalOptions="FillAndExpand" Padding="10,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <local:RoundedEntry  x:Name="Area_From" VerticalTextAlignment="Center" WidthRequest="50" FontSize="16" HorizontalOptions="FillAndExpand" TextColor="#555555"  FontFamily="Silka"  Placeholder="From"   />
+                                        </StackLayout>
+                                        <Label Padding="10,0" Grid.Column="1"  TextColor="Black" FontSize="14" Text="m2" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                                <Label Padding="10,0" Grid.Column="2"  TextColor="Gray" FontSize="14" Text="To" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                <Frame Grid.Column="3" CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                    <Grid ColumnSpacing="10" HorizontalOptions="FillAndExpand" Padding="10,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <local:RoundedEntry  x:Name="Area_To" VerticalTextAlignment="Center" WidthRequest="50" FontSize="16" HorizontalOptions="FillAndExpand" TextColor="#555555"  FontFamily="Silka"  Placeholder="To"   />
+                                        </StackLayout>
+                                        <Label Padding="10,0" Grid.Column="1"  TextColor="Black" FontSize="14" Text="m2" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Annual_income" IsVisible="false">
+                                <Frame CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                    <Grid ColumnSpacing="10" HorizontalOptions="FillAndExpand" Padding="10,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <local:RoundedEntry  x:Name="Annual_income" VerticalTextAlignment="Center" FontSize="16" HorizontalOptions="FillAndExpand" TextColor="#555555"  FontFamily="Silka"  Placeholder="{i18n:Translate Annual_income}"   />
+                                        </StackLayout>
+                                        <Label Padding="10,0" Grid.Column="1"  TextColor="Black" FontSize="14" Text="JOD" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show__Number_of_normal_bath_room" IsVisible="False" >
+                                <Label Text="{i18n:Translate No_normal_bath_room}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="rdb_Number_of_normal_bath_room_1"  Text="1" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Number_of_normal_bath_room_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Number_of_normal_bath_room_2" Text="2" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Number_of_normal_bath_room_2_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Number_of_normal_bath_room_3"  Text="3" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Number_of_normal_bath_room_3_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Number_of_normal_bath_room_4" Text="+4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Number_of_normal_bath_room_4_CheckedChanged"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show__Number_of_master_bath_room" IsVisible="False">
+                                <Label Text="{i18n:Translate No_master_bath_room}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="rdb_Number_of_master_bath_room_0"  Text="0" Value="0"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Number_of_master_bath_room_0_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Number_of_master_bath_room_1" Text="1" Value="1" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Number_of_master_bath_room_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Number_of_master_bath_room_2"  Text="2" Value="2" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Number_of_master_bath_room_2_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Number_of_master_bath_room_3" Text="3" Value="3" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Number_of_master_bath_room_3_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Number_of_master_bath_room_4" Text="+4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Number_of_master_bath_room_4_CheckedChanged"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout  x:Name="Show_balcons" IsVisible="false">
+                                <Label Text="{i18n:Translate Number_of_balcons}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="rdb_Number_of_balcons_0"  Text="0" Value="0"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Number_of_balcons_0_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Number_of_balcons_1" Text="1" Value="1" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Number_of_balcons_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Number_of_balcons_2"  Text="2" Value="2" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Number_of_balcons_2_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Number_of_balcons_3" Text="3" Value="3" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Number_of_balcons_3_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Number_of_balcons_4" Text="+4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Number_of_balcons_4_CheckedChanged"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Number_of_floor" Padding="0" Spacing="0" IsVisible="false">
+                                <Label Text="{i18n:Translate Number_of_floor}" Padding="0" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="Rdb_number_of_Floor_1"  Text="1" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_number_of_Floor_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_number_of_Floor_2" Text="2" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_number_of_Floor_2_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_number_of_Floor_3"  Text="3" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_number_of_Floor_3_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_number_of_Floor_4" Text="+4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_number_of_Floor_4_CheckedChanged"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Shop" Padding="0" Spacing="0" IsVisible="false">
+                                <StackLayout x:Name="show_Number_of_shop" IsVisible="false">
+                                    <Label Text="{i18n:Translate Number_of_shop}" HorizontalOptions="Fill" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Spacing="20">
+                                        <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                            <input:RadioButton x:Name="Rdb_number_of_shop_1"  Text="1" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_number_of_shop_1_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_number_of_shop_2" Text="2" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_number_of_shop_2_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_number_of_shop_3"  Text="3" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_number_of_shop_3_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_number_of_shop_4" Text="+4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_number_of_shop_4_CheckedChanged"/>
+                                        </input:RadioButtonGroupView>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Floor_number" Padding="0" Spacing="3" IsVisible="false">
+                                <Label Text="{i18n:Translate Floor_number}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="15">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="Rdb_Floornumber_minus_1"  Text="-1" Value="-1" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_Floornumber_minus_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_Floornumber_0"  Text="0" Value="0"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_Floornumber_0_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_Floornumber_1"  Text="1" Value="1" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_Floornumber_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_Floornumber_2" Text="2" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_Floornumber_2_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_Floornumber_3"  Text="3" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_Floornumber_3_CheckedChanged"/>
+                                        <input:RadioButton x:Name="Rdb_Floornumber_4" Text="+4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_Floornumber_4_CheckedChanged"/>
+                                    </input:RadioButtonGroupView>
+                                 </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="ResidentIal"  Spacing="3" IsVisible="false">
+                                <StackLayout x:Name="show_Number_of_Appartment"  IsVisible="false">
+                                    <Label Text="{i18n:Translate Number_of_Appartment}" HorizontalOptions="Fill" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Spacing="20">
+                                        <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                            <input:RadioButton x:Name="Rdb_Appartment_1"  Text="1" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_Appartment_1_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_Appartment_2" Text="2" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_Appartment_2_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_Appartment_3"  Text="3" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_Appartment_3_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_Appartment_4" Text="+4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_Appartment_4_CheckedChanged"/>
+                                        </input:RadioButtonGroupView>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Office" IsVisible="false">
+                            </StackLayout>
+
+                            <StackLayout x:Name="Complex1" Padding="0,0" Spacing="3" IsVisible="false">
+                                <StackLayout x:Name="show_Number_of_offices" IsVisible="false">
+                                    <Label Text="{i18n:Translate Number_of_offices}" HorizontalOptions="Fill" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Spacing="20">
+                                        <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                            <input:RadioButton x:Name="Rdb_number_of_offices_1"  Text="1" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_number_of_offices_1_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_number_of_offices_2" Text="2" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_number_of_offices_2_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_number_of_offices_3"  Text="3" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_number_of_offices_3_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_number_of_offices_4" Text="+4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_number_of_offices_4_CheckedChanged"/>
+                                        </input:RadioButtonGroupView>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <StackLayout x:Name="show_Number_of_store" Padding="0">
+                                    <Label Text="{i18n:Translate Number_of_store}" FontSize="Medium" />
+                                    <StackLayout Padding="0" Orientation="Horizontal" Spacing="20">
+                                        <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                            <input:RadioButton x:Name="Rdb_number_of_store_1"  Text="1" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_number_of_store_1_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_number_of_store_2" Text="2" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_number_of_store_2_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_number_of_store_3"  Text="3" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="Rdb_number_of_store_3_CheckedChanged"/>
+                                            <input:RadioButton x:Name="Rdb_number_of_store_4" Text="+4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="Rdb_number_of_store_4_CheckedChanged"/>
+                                        </input:RadioButtonGroupView>
+                                    </StackLayout>
+                                </StackLayout >
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Building_status" Padding="0,0" Orientation="Vertical" IsVisible="true">
+                                <Label Text="{i18n:Translate Building_Condition}" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="50">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="rdp_Old_1"  Text="{i18n:Translate Old}" Value="1"  TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdp_Old_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdp_Old_2" Text="{i18n:Translate New}" Value="0"  IsChecked="True" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdp_Old_2_CheckedChanged"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Street_categoury" Padding="0" IsVisible="true">
+                                <Label Text="{i18n:Translate Street_categoury}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="50">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="rdp_Main_1"  Text="{i18n:Translate Main}" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdp_Main_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdp_Sub_0" Text="{i18n:Translate Sub}" Value="0" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdp_Sub_0_CheckedChanged"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_maintenace" Padding="0,5" IsVisible="false" VerticalOptions="Center">
+                                <StackLayout Orientation="Vertical" >
+                                    <Label Text="{i18n:Translate Need_maintenace}" FontSize="Medium" HorizontalOptions="Start"/>
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="rdp_maintenance_1"  Text="{i18n:Translate Yes}" Value="1" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdp_maintenance_1_clicked"/>
+                                        <input:RadioButton x:Name="rdp_maintenance_0" Text="{i18n:Translate No}" Value="0"   IsChecked="True" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdp_maintenance_0_clicked"/>
+                                        
+                                    <!--    <input:CheckBox x:Name="chk_Has_ads" Type="Check" IsChecked="False" HeightRequest="20" CheckChanged="chk_Has_ads_CheckedChanged"/>
+                                 -->
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+
+                                <StackLayout>
+                                    <Label Text="{i18n:Translate Building_Age}" HorizontalOptions="Fill" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Spacing="20">
+                                        <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                            <input:RadioButton x:Name="rdp_Building_Age_1"  Text="5" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdp_Building_Age_1_CheckedChanged"/>
+                                            <input:RadioButton x:Name="rdp_Building_Age_2" Text="10" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdp_Building_Age_2_CheckedChanged"/>
+                                            <input:RadioButton x:Name="rdp_Building_Age_3"  Text="15" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdp_Building_Age_3_CheckedChanged"/>
+                                            <input:RadioButton x:Name="rdp_Building_Age_4" Text="+20" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdp_Building_Age_4_CheckedChanged"/>
+                                        </input:RadioButtonGroupView>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Payment_Type2" IsVisible="true">
+                                <Label Text="{i18n:Translate Payment_Type}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="50">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="rdb_Payment_Type_1"  Text="{i18n:Translate Cash}" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Payment_Type_1_CheckedChanged"/>
+                                        <input:RadioButton x:Name="rdb_Payment_Type_2" Text="{i18n:Translate Installments}" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Payment_Type_2_CheckedChanged"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Bathroom" IsVisible="false" Orientation="Horizontal" Padding="0,0">
+                                <Label Text="{i18n:Translate Bathroom}" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="40">
+                                    <Switch x:Name="rdp_Bathroom_switch" HorizontalOptions="End" Toggled="rdp_Bathroom_OnToggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Upper_block" IsVisible="false" Orientation="Horizontal">
+                                <Label Text="{i18n:Translate Upper_block}" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="40">
+                                    <Switch x:Name="rdp_Upper_block_switch" HorizontalOptions="End" Toggled="rdp_Upper_block_OnToggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Door_No" IsVisible="false">
+                                <StackLayout>
+                                    <Label Text="{i18n:Translate Number_door}" HorizontalOptions="Fill" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Spacing="20">
+                                        <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                            <input:RadioButton x:Name="rdp_door_1"  Text="1" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdp_door_1_CheckedChanged"/>
+                                            <input:RadioButton x:Name="rdp_door_2" Text="2" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdp_door_2_CheckedChanged"/>
+                                            <input:RadioButton x:Name="rdp_door_3"  Text="3" Value="3" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdp_door_3_CheckedChanged"/>
+                                            <input:RadioButton x:Name="rdp_door_4" Text="+4" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdp_door_4_CheckedChanged"/>
+                                        </input:RadioButtonGroupView>
+                                     </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Show_Existence_services" Orientation="Horizontal" Padding="0,0" IsVisible="false">
+                                <Label Text="{i18n:Translate Existence_services}" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="40">
+                                    <Switch x:Name="Rdb_Existence_of_services_switch" HorizontalOptions="End" Toggled="Rdb_Existence_of_services_OnToggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Appartment" Padding="0" Spacing="0" IsVisible="false">
+                                <StackLayout x:Name="RoofStack" IsVisible="false" Orientation="Horizontal" Padding="0,0">
+                                    <Label Text="{i18n:Translate Roof}" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Spacing="40">
+                                        <Switch x:Name="Switch_Roof" HorizontalOptions="End" Toggled="Roof_Toggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout  x:Name="FurnishedStack" IsVisible="false" Orientation="Horizontal" Padding="0,0">
+                                    <Label Text="{i18n:Translate Furnished}" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Spacing="40">
+                                        <Switch x:Name="Switch_Furnished" HorizontalOptions="End" Toggled="Furnished_Toggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Villa"  IsVisible="false">
+                            </StackLayout>
+
+                            <StackLayout >
+                                <StackLayout x:Name="Show_Kitchen" IsVisible="false" Orientation="Horizontal" Padding="0,0">
+                                    <Label Text="{i18n:Translate Kitchen}" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Spacing="40">
+                                        <Switch x:Name="rdp_Kitchen_switch" HorizontalOptions="End" Toggled="rdp_Kitchen_switch_OnToggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Farm" Padding="0" Spacing="0" >
+                                <StackLayout x:Name="PoolStack" IsVisible="false" Orientation="Horizontal" Padding="0,0">
+                                    <Label Text="Pool" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Spacing="40">
+                                        <Switch x:Name="Pool"  HorizontalOptions="End" Toggled="Pool_Toggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <StackLayout x:Name="EntertamentStack" IsVisible="false" Orientation="Horizontal" Padding="0,0">
+                                    <Label Text="Entertament" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Spacing="40">
+                                        <Switch x:Name="Entertament"  HorizontalOptions="End" Toggled="Entertament_Toggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <StackLayout x:Name="CropsStack" IsVisible="false" Orientation="Horizontal" Padding="0,0">
+                                    <Label Text="Crops" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Spacing="40">
+                                        <Switch x:Name="Crops"  HorizontalOptions="End" Toggled="Crops_Toggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout  x:Name="Show_Elevator"  IsVisible="false" Orientation="Horizontal" Padding="0,0">
+                                <Label Text="{i18n:Translate Elevator}" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="40">
+                                    <Switch x:Name="Rdb_Elevator_switch" HorizontalOptions="End" Toggled="Rdb_Elevator_OnToggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout  x:Name="Show_Garden" IsVisible="false" Orientation="Horizontal" Padding="0,0">
+                                <Label Text="{i18n:Translate Garden}"  HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="40">
+                                    <Switch x:Name="Switch_Garden" HorizontalOptions="End" Toggled="Garden_Toggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout  x:Name="Show_Parking" IsVisible="true" Orientation="Horizontal" Padding="0,0">
+                                <Label Text="{i18n:Translate parking}" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="40">
+                                    <Switch x:Name="rdb_parking_switch" HorizontalOptions="End" Toggled="rdb_parking_OnToggled" IsToggled="False" OnColor="#1269C8" ThumbColor="Silver"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <Frame CornerRadius="20" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="200"  WidthRequest="335">
+                                <StackLayout Orientation="Horizontal" Spacing="20" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="10,0">
+                                    <local:RoundedEntry x:Name="ads_description" FontSize="16" VerticalTextAlignment="Start" VerticalOptions="Center" BackgroundColor="Transparent"  TextColor="#555555"  FontFamily="Silka"  Placeholder="{i18n:Translate DESCRIPTION}" HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame CornerRadius="40"   Padding="0"    
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="400" >
+                                <Button x:Name="Next" BackgroundColor="#1269C8" Text="{i18n:Translate Next}" HorizontalOptions="FillAndExpand" Clicked="Next_Clicked"></Button>
+                            </Frame>
+
+                            <CollectionView x:Name="collectionView" IsVisible="false"
+          SelectionMode="Single">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Padding="10">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Grid.RowSpan="2"
+                       Source="{Binding register_name}"
+                       Aspect="AspectFill"
+                       HeightRequest="60"
+                       WidthRequest="60" />
+                                            <Label Grid.Column="1"
+                       Text="{Binding comment_time}"
+                       FontAttributes="Bold" />
+                                            <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding description}"
+                       FontAttributes="Italic"
+                       VerticalOptions="End" />
+                                        </Grid>
+
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+
+                            </CollectionView>
+                        </StackLayout>
+
+                        <StackLayout x:Name="image_Location_tab" Padding="5" Spacing="10" IsVisible="false">
+
+                            <Label x:Name="Logo_Val" Text="{i18n:Translate Images}" FontSize="Medium" HorizontalOptions="Fill"  FontAttributes="Bold" TextColor="Black"/>
+
+
+                            <Frame CornerRadius="20"   Padding="0"    
+                        HorizontalOptions="Start"                      
+                       IsClippedToBounds="True" BackgroundColor="#1269C8" WidthRequest="100" HeightRequest="100">
+                                <StackLayout>
+                                    <ImageButton x:Name="Upload" Source="Upload_Photo.png"  WidthRequest="35" HeightRequest="35" Clicked="upload_Clicked" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,25,10,10"></ImageButton>
+
+                                </StackLayout>
+                            </Frame>
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Black"/>
+
+                            <StackLayout>
+                                <Label  Text="{i18n:Translate LOCATION}"  HorizontalOptions="Fill"  FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+
+
+                                <map:Map  x:Name="mapObject"  MapType="Street"              
+                        WidthRequest="200"
+                        HeightRequest="300" MapClicked="MapObject_MapClicked"
+                            />
+
+                                <StackLayout
+                BackgroundColor="White"
+                Padding="5"
+                Spacing="2"
+                Grid.Row="5">
+                                    <Label
+                    x:Name="addressEntry"
+                    />
+
+
+                                </StackLayout>
+                            </StackLayout>
+
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Black"/>
+                            <StackLayout>
+                                <Label Text="{i18n:Translate Payment_and_submit}"  HorizontalOptions="Fill"  TextColor="#555555" FontSize="20" FontAttributes="Bold" />
+                            </StackLayout>
+                            <Grid>
+                                <StackLayout x:Name="Advertiser_Type_after_click" IsVisible="True">
+                                    <Label Text="{i18n:Translate Advertiser_Type}" TextColor="#555555" HorizontalOptions="FillAndExpand" FontSize="14" />
+                                    <Frame x:Name="Advertiser_Type" CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Advertiser_TypeButton_Clicked"/>
+                                        </Frame.GestureRecognizers>
+                                        <Grid  BackgroundColor="Transparent" ColumnSpacing="10" Padding="20,3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label x:Name="Advertiser_Type_Entry"  TextColor="#555555" Padding="0,0" FontAttributes="Bold" FontSize="14" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" Text="Proker" VerticalOptions="Center"/>
+                                            <Image HeightRequest="20" Grid.Column="1" Source="outline_arrow_drop_down_black_48dp11.png" WidthRequest="20" HorizontalOptions="End"/>
+                                        </Grid>
+                                    </Frame>
+                                    <StackLayout Padding="30,0" x:Name="Advertiser_Type_popuplayout" IsVisible="False">
+                                            <ListView x:Name="Advertiser_Type_Val"  ItemsSource="{Binding Advertiser_char}" ItemTapped="Select_Advertiser_Type_ItemTapped" BackgroundColor="Transparent" HasUnevenRows="False"  HorizontalOptions="FillAndExpand" >
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <ViewCell>
+                                                            <Label FontAttributes="Bold"  TextColor="#555555" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center"  Margin="15,10,10,5" FontSize="16" Text="{Binding Name}"/>
+                                                        </ViewCell>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                            <StackLayout  x:Name="Show_type_of_advertisment" IsVisible="True">
+                                <Label Text="{i18n:Translate type_of_advertisment}" HorizontalOptions="FillAndExpand" FontSize="14" />
+                                <Frame x:Name="type_of_advertisment" CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="type_of_advertisment_Button_Clicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid  BackgroundColor="Transparent" ColumnSpacing="10" Padding="20,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="type_of_advertisment_Entry"  TextColor="#555555" LineBreakMode="WordWrap" FontAttributes="Bold" Padding="0,0" FontSize="14" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" Text="Normal" VerticalOptions="Center"/>
+                                        <Image HeightRequest="20" Grid.Column="1" Source="outline_arrow_drop_down_black_48dp11.png" WidthRequest="20" HorizontalOptions="End"/>
+                                    </Grid>
+                                </Frame>
+                                <Label x:Name="Type_of_adv_description" HorizontalOptions="FillAndExpand" TextColor="Gray" FontSize="Small" />
+
+                                <StackLayout Padding="30,0" x:Name="type_of_advertisment_popuplayout" IsVisible="False">
+                                    <ListView x:Name="type_of_advertisment_Val"  ItemsSource="{Binding Advertisment_type}" ItemTapped="Select_type_of_advertisment_ItemTapped" RowHeight="50" BackgroundColor="Transparent" HasUnevenRows="True"  HorizontalOptions="FillAndExpand" >
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Label FontAttributes="Bold"  TextColor="#555555" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center"  Margin="15,10,10,5" FontSize="16" Text="{Binding Name}"/>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" x:Name="Show_Ads_Price" IsVisible="false">
+                                <Frame CornerRadius="40" BorderColor="Gray" BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="50" >
+                                    <Grid ColumnSpacing="10" Padding="20,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0" ColumnSpacing="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image HeightRequest="15" Grid.Column="0" Source="blue_minus_3x.png" WidthRequest="15" HorizontalOptions="Start">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="decreaseButton_Clicked"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Label x:Name="lbldisp" FontAttributes="Bold" Grid.Column="1" HorizontalOptions="Start"  VerticalOptions="Center" FontSize="16"/>
+                                            <Label Text="/ Day" FontAttributes="Bold" FontSize="16" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                            <Image HeightRequest="15" Grid.Column="3" Source="blue_plus_3x.png" WidthRequest="15" HorizontalOptions="Start">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="increaseButton_Clicked"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+
+                                        <StackLayout Orientation="Horizontal" Padding="0,7" Grid.Column="1" HorizontalOptions="End">
+                                            <Frame CornerRadius="40" BorderColor="#1269C8" Padding="10,0" BackgroundColor="#1269C8"  >
+                                                <StackLayout Orientation="Horizontal" Spacing="10" Padding="10,0">
+                                                    <Label x:Name="Price_Val" Text="0" TextColor="White" FontSize="16"  VerticalOptions="Center"/>
+                                                    <Label Text="JOD" FontSize="16"  TextColor="White" VerticalOptions="Center"/>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                                <Label x:Name="no_of_days_for_advs" Text="{i18n:Translate no_of_days_for_advs}" HorizontalOptions="FillAndExpand" TextColor="Gray" FontSize="Small" IsVisible="false"/>
+                            </StackLayout>
+
+                            <StackLayout x:Name="CompayPaidType"  Orientation="Vertical" Spacing="2" IsVisible="false">
+                                <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                    <input:RadioButton Text="Has been paid to aeqary" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20"/>
+                                    <input:RadioButton Text="online payment" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" />
+                                </input:RadioButtonGroupView>
+                            </StackLayout>
+
+                            <StackLayout >
+                                <Label Text="{i18n:Translate Allow_comment}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="50">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="20" >
+                                        <input:RadioButton x:Name="rdb_Allow_comment_1"  Text="{i18n:Translate Yes}" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Allow_comment_1_clicked"/>
+                                        <input:RadioButton x:Name="rdb_Allow_comment_0" Text="{i18n:Translate No}" Value="0" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Allow_comment_0_clicked"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="{i18n:Translate Ads_status}" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="40">
+                                    <Switch x:Name="rdb_Active_switch" HorizontalOptions="End" Toggled="rdb_Active_OnToggled" IsToggled="True" OnColor="#1269C8" ThumbColor="Silver"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <Frame CornerRadius="40"   Padding="0"    
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="400" >
+                                <Button Text="{i18n:Translate Submit}" BackgroundColor="#1269C8" HorizontalOptions="FillAndExpand" Clicked="Submit_Clicked"></Button>
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+        </pancake:PancakeView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,969 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="Aquary.Views.Ads_View_details"
+              Shell.TabBarIsVisible="false"
+             Shell.NavBarIsVisible="false"
+              xmlns:i18n="clr-namespace:Aquary.Helper"
+               xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:local="clr-namespace:CustomRendererDemo"
+                Title="{Binding Title}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="900" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout  Padding="0">
+                <CarouselView x:Name="collectionView_Photo">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+
+                        <Image  Source="{Binding photo_path}" WidthRequest="400" HeightRequest="700" Aspect="AspectFill" HorizontalOptions="Center"></Image>
+                        
+                       
+
+                    </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>           
+            <StackLayout Orientation="Horizontal"  Spacing="150" TranslationY="-300" Margin="10,0,10,0" >
+                <StackLayout Orientation="Horizontal" Spacing="10" Padding="5,0,0,0" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
+                    <StackLayout TranslationY="4">
+
+                        <Frame CornerRadius="100" Padding="0"  HorizontalOptions="Center" 
+                   
+              IsClippedToBounds="True" BackgroundColor="Transparent">
+                            <ImageButton x:Name="Icon_back" Source="back.png"   WidthRequest="20" HeightRequest="20"  HorizontalOptions="Center" Clicked="Icon_back_Clicked"  BackgroundColor="Transparent"></ImageButton>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame CornerRadius="100" Padding="0"  HorizontalOptions="Center" 
+                   
+              IsClippedToBounds="True" BackgroundColor="Transparent">
+                            <ImageButton x:Name="Icon_Fav" Source="Fav_Black.png"   WidthRequest="30" HeightRequest="30"  HorizontalOptions="EndAndExpand" Clicked="Icon_Fav_Clicked"  BackgroundColor="Transparent"></ImageButton>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="0,0,0,5">
+                    <StackLayout>
+                        <Frame CornerRadius="100" Padding="0"  HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"  
+                  
+              IsClippedToBounds="True" >
+                            <StackLayout Orientation="Vertical" Spacing="10">
+                                <ImageButton x:Name="Icon_Intres" Source="Intrested_black.png"  WidthRequest="30" HeightRequest="30"  HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Clicked="Add_Inter_Clicked" ></ImageButton>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Frame CornerRadius="100" Padding="0"  HorizontalOptions="EndAndExpand"  
+                    BackgroundColor="Transparent"
+              IsClippedToBounds="True" >
+                            <StackLayout Orientation="Vertical" >
+                                <ImageButton x:Name="Icon_share" Source="empty_share.png"  WidthRequest="30" HeightRequest="30"  HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"  Clicked="ImageButton_Clicked" ></ImageButton>
+
+
+                            </StackLayout>
+
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <pancake:PancakeView Padding="10"
+                     BackgroundColor="White"
+                     CornerRadius="40,40,0,0" TranslationY="-170" HeightRequest="800">
+                <StackLayout  x:Name="Menu_Scroll_Lang">
+          
+                    <StackLayout Orientation="Horizontal"  Spacing="50" Margin="5,30,5,5" x:Name="Show_Price_En">
+
+                <Label x:Name="Lbltitle"  Padding="10,0,0,0"  FontSize="22" MaxLines="1"  HorizontalTextAlignment="Start" FontFamily="Silka" TextColor="#000000"/>
+                        <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="EndAndExpand">
+                            <Label  Text="{i18n:Translate JOD}" FontSize="20" TextColor="#1269C8" HorizontalTextAlignment="END" FontFamily="Silka"  />
+                            <Label x:Name="LblPrice" MaxLines="1" FontSize="20" TextColor="#1269C8" HorizontalTextAlignment="END" FontFamily="Silka" /> 
+                </StackLayout>
+            </StackLayout>
+                    
+            <!--    </Frame>-->
+            <StackLayout Orientation="Horizontal" Margin="0,10,0,0" Padding="10,0,0,0" BackgroundColor="White" >
+                <Image Source="Gray_Location.png" WidthRequest="20" HeightRequest="20" />
+                 <Label x:Name="LblArea"    FontSize="18" TextColor="#7F7F7F" FontFamily="Silka"  HorizontalTextAlignment="start"/>
+
+            </StackLayout>
+          
+                    <Frame   CornerRadius="20" Margin="2,15,2,2" >
+                <StackLayout Orientation="Horizontal" Spacing="15"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame   CornerRadius="20" Padding="0" >
+                        <Image x:Name="Register_Logo"  WidthRequest="59" HeightRequest="59" Aspect="AspectFill" HorizontalOptions="Start"></Image>
+                      </Frame>
+                    <StackLayout Orientation="Vertical" Padding="5">
+                        <Label x:Name="LblRegistername"    FontSize="18" TextColor="Black"  HorizontalTextAlignment="left" TextTransform="Uppercase" FontFamily="Silka" MaxLines="2"/>
+                        <Label x:Name="LblRegisteremail"    FontSize="12" TextColor="#6C6C6C" HorizontalTextAlignment="left" FontFamily="Silka" HeightRequest="14" WidthRequest="157"/>
+                        <Label x:Name="LblRegisterphone"    FontSize="Small" TextColor="Black" HorizontalTextAlignment="center" IsVisible="false"/>
+                    </StackLayout>
+
+                            <ImageButton x:Name="Call_btn" Source="call.png" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" Clicked="btnCall_Click" BackgroundColor="Transparent" />
+
+                </StackLayout>
+            </Frame>
+                    <ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+                        <StackLayout Orientation="Horizontal"  Margin="0,11,0,10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Button x:Name="Btn_DETAILS1" Text="{i18n:Translate DETAILS}"  Padding="5,1,5,1"  HeightRequest="60"   HorizontalOptions="FillAndExpand"        BackgroundColor="#1269C8" TextColor="white"  BorderWidth="1" BorderRadius="40" BorderColor="#1269C8" Clicked="Btn_DETAILS" FontFamily="Silka" FontSize="14" ></Button>
+                            <Button x:Name="Btn_DESCRIPTION"  Text="{i18n:Translate DESCRIPTION}" Padding="5,1,5,1" HeightRequest="60" HorizontalOptions="FillAndExpand"       BackgroundColor="White" TextColor="#1269C8"  BorderWidth="1" BorderRadius="40" BorderColor="#1269C8" Clicked="Btn_DESCRIPTION_Clicked" FontFamily="Silka" FontSize="14"></Button>
+                            <Button x:Name="Btn_LOCATION" Text="{i18n:Translate LOCATION}"  Padding="5,1,5,1"  HeightRequest="60" HorizontalOptions="FillAndExpand"        BackgroundColor="White" TextColor="#1269C8"  BorderWidth="1" BorderRadius="40" BorderColor="#1269C8" Clicked="Btn_LOCATION_Clicked" FontFamily="Silka" FontSize="14"></Button>
+                            <Button x:Name="Btn_COMMENTS" Text="{i18n:Translate COMMENTS}" Padding="5,1,5,1"  HeightRequest="60"  HorizontalOptions="FillAndExpand"        BackgroundColor="White" TextColor="#1269C8"  BorderWidth="1" BorderRadius="40" BorderColor="#1269C8" Clicked="Btn_COMMENTS_Clicked" FontFamily="Silka" FontSize="14"></Button>
+
+            </StackLayout>
+                    </ScrollView>
+                    <StackLayout Margin="0,10,0,0">
+                        <!--<ScrollView Grid.Row="1">-->
+
+
+
+                        <StackLayout TranslationY="-0" HeightRequest="700">
+
+                            <StackLayout x:Name="Details_tab" Padding="0" Spacing="0" IsVisible="true">
+
+                                <StackLayout x:Name="Store" Padding="15" Spacing="3" IsVisible="false">
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Store Area :" FontSize="16" />
+                                        <Label  x:Name="Store_building_Area"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_condition.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Building status" FontSize="16" />
+                                        <Label   x:Name="Store_Building_Status"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="need_maintainance.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Need to maintenace :" FontSize="16" />
+                                        <Label  x:Name="Store_Maintenance"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Building Age" FontSize="16" />
+                                        <Label   x:Name="Store_Age"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="No_door.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="No. of doors :" FontSize="16" />
+                                        <Label  x:Name="Store_Door"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                    </StackLayout>
+
+
+                                </StackLayout>
+
+                                <StackLayout x:Name="Hanger" Padding="15" Spacing="3" IsVisible="false">
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="land_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Hanger Area" FontSize="16" />
+                                        <Label  x:Name="Hanger_Area_Val"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Land Area" FontSize="16" />
+                                        <Label   x:Name="Hanger_Land_Area_Val"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="building_condition.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Hanger status" FontSize="16" />
+                                        <Label  x:Name="Hanger_Building_status"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="need_maintainance.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Need to maintenace" FontSize="16" />
+                                        <Label   x:Name="Hanger_need_to_maintenance"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="building_age.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Building Age" FontSize="16" />
+                                        <Label  x:Name="Hanger_Building_Age"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="No_door.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="No. of door" FontSize="16" />
+                                        <Label   x:Name="Hanger_door"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+
+
+
+
+                                </StackLayout>
+
+                                <StackLayout x:Name="Shop" Padding="15" Spacing="3" IsVisible="false">
+
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="land_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Shop Area" FontSize="16" />
+                                        <Label  x:Name="Shop_Area_Val"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_condition.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Shop status" FontSize="16" />
+                                        <Label   x:Name="shop_Building_status"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="need_maintainance.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Need to maintenace" FontSize="16" />
+                                        <Label  x:Name="Shop_need_to_maintenance"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_age.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Shop Age" FontSize="16" />
+                                        <Label   x:Name="shop_Building_Age"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="No_door.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="No of door" FontSize="16" />
+                                        <Label  x:Name="Shop_door"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Kitchen" FontSize="16" />
+                                        <Label   x:Name="Shop_Kitchen"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="No_bath.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Bathroom" FontSize="16" />
+                                        <Label  x:Name="Shop_bathroom"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Upper block" FontSize="16" />
+                                        <Label   x:Name="Shop_upper_block"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+
+                                </StackLayout>
+
+                                <StackLayout x:Name="Office" Padding="15" Spacing="3" IsVisible="false">
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="building_age.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Office Area" FontSize="16" />
+                                        <Label  x:Name="Office_Area_Val"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_condition.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Office status" FontSize="16" />
+                                        <Label   x:Name="Office_Building_status"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="building_age.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Office Age" FontSize="16" />
+                                        <Label  x:Name="Office_Building_Age"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="need_maintainance.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Need to maintenace" FontSize="16" />
+                                        <Label   x:Name="Office_need_to_maintenance"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="No_bed.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="No. of room" FontSize="16" />
+                                        <Label  x:Name="office_room_number"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="need_maintainance.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Kitchen" FontSize="16" />
+                                        <Label   x:Name="Office_Kitchen"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="No_bath.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Bathroom" FontSize="16" />
+                                        <Label  x:Name="Office_bathroom"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="need_maintainance.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Floor number" FontSize="16" />
+                                        <Label   x:Name="office_floor_number"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+
+                                </StackLayout>
+
+                                <StackLayout x:Name="Complex1" Padding="15" Spacing="3" IsVisible="false">
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="land_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Land Area" FontSize="16" />
+                                        <Label  x:Name="Complex_Land_Area_Val"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Complex Area" FontSize="16" />
+                                        <Label   x:Name="Complex_area_val"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="need_maintainance.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Need to maintenace" FontSize="16" />
+                                        <Label  x:Name="Complex_need_to_maintenance"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_age.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Complex Age" FontSize="16" />
+                                        <Label   x:Name="Complex_Building_Age"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="annule_incom.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Annual income" FontSize="16" />
+                                        <Label  x:Name="Complex_Annual_income"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="No_floor.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Number of floor" FontSize="16" />
+                                        <Label   x:Name="Complex_Floor_number"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="No_office.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Number of offices" FontSize="16" />
+                                        <Label  x:Name="complex_offices_number"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="No_shop.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="number of shop" FontSize="16" />
+                                        <Label   x:Name="Complex_shop_number"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="No_shop.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Number of store" FontSize="16" />
+                                        <Label  x:Name="Complex_Store_number"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="elevator.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Elevator" FontSize="16" />
+                                        <Label   x:Name="Complex_Elevator"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+
+
+
+
+
+
+
+                                </StackLayout>
+
+                                <StackLayout x:Name="ResidentIal" Padding="15" Spacing="3" IsVisible="false">
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Building Area" FontSize="16" />
+                                        <Label  x:Name="ResidentIal_Building_area_val"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_condition.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="ResidentIal Status" FontSize="16" />
+                                        <Label   x:Name="ResidentIal_Building_status"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="need_maintainance.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Need to maintenace" FontSize="16" />
+                                        <Label  x:Name="ResidentIal_need_to_maintenance"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_age.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="ResidentIal Age" FontSize="16" />
+                                        <Label   x:Name="ResidentIal_Building_Age"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="annule_incom.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Annual income" FontSize="16" />
+                                        <Label  x:Name="ResidentIal_Annual_income"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="elevator.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Elevator" FontSize="16" />
+                                        <Label   x:Name="ResidentIal_Elevator"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="No_floor.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Number of floor" FontSize="16" />
+                                        <Label  x:Name="ResidentIal_Floor_number"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="No_apartment.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Number of Appartment" FontSize="16" />
+                                        <Label   x:Name="ResidentIal_appartment_number"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+
+
+
+
+
+
+                                </StackLayout>
+
+                                    <StackLayout x:Name="Appartment" Spacing="20" IsVisible="false" Margin="0,10,0,0">
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="60">
+                                            <StackLayout Orientation="Horizontal"  >
+
+                                                <Image Source="land_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Appartment Area " FontSize="14" />
+                                            <Label  x:Name="Appartment_area_val"   FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+
+                                          </StackLayout>
+                                            <StackLayout Orientation="Horizontal" Grid.Column="1" >
+
+                                                <Image Source="elevator.png" WidthRequest="20" HeightRequest="20" />
+                                                <Label Text="Elevator" FontSize="14" />
+                                                <Label  x:Name="Appartment_Elevator"   FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                         </StackLayout>
+                                        
+                                          
+                                    </StackLayout>
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="65"   >
+                                            <StackLayout Orientation="Horizontal" >
+                                                <Image Source="need_maintainance.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Need maintenace" FontSize="14" />
+                                            <Label  x:Name="Appartment_need_to_maintenance"   FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+</StackLayout>
+                                            <StackLayout Orientation="Horizontal" >
+                                                <Image Source="building_age.png" WidthRequest="20" HeightRequest="20" />
+                                                <Label Text="Appartment Age" FontSize="14" />
+                                                <Label   x:Name="Appartment_Building_Age"  FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </StackLayout>
+
+
+                                        <StackLayout Orientation="Horizontal"  Spacing="55">
+                                            <StackLayout Orientation="Horizontal" >
+                                                <Image Source="building_condition.png" WidthRequest="20" HeightRequest="20" />
+                                                <Label Text="Appartment Status" FontSize="14" />
+                                                <Label   x:Name="Appartment_Building_status"  FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal" >
+                                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                                <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="floor Number" FontSize="15" />
+                                                <Label   x:Name="Appartment_Floor_number"  FontSize="15" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold" />
+</StackLayout>
+                                                </StackLayout>
+                                    </StackLayout>
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="83"   >
+                                            <StackLayout Orientation="Horizontal" >
+
+                                                <Image Source="No_bath.jpg" WidthRequest="20" HeightRequest="20" />
+                                                <Label Text="No of Bath room" FontSize="14" />
+                                                <Label   x:Name="Appartment_Number_of_normal_bath"  FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        
+                                            <StackLayout Orientation="Horizontal" >
+
+                                                <Image Source="No_bed.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="No of room" FontSize="15" />
+                                                <Label  x:Name="Appartment_Number_of_room"   FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                            </StackLayout>
+                              
+                                            </StackLayout>
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="72"  >
+                                            <StackLayout Orientation="Horizontal" >
+                                                <Image Source="master_bath.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="No of master Bath" FontSize="14" />
+                                                <Label  x:Name="Appartment_Number_of_master_bath"   FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                         </StackLayout>
+                                            <StackLayout Orientation="Horizontal" >
+                                                <Image Source="balcony.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="No of balcons" FontSize="14" />
+                                                <Label   x:Name="Appartment_Number_of_balcons"  FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </StackLayout>
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="140"   >
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="roof.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Roof" FontSize="14" />
+                                                <Label  x:Name="Appartment_Roof"   FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                        <Image Source="furntire.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Furnished" FontSize="14" />
+                                                <Label   x:Name="Appartment_Furnished"  FontSize="14" TextColor="#7F7F7F" FontFamily="Silka"  FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </StackLayout>
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  >
+
+                                        <Image Source="garden.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Garden" FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" />
+                                            <Label x:Name="Appartment_Garden" FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                    </StackLayout>
+
+                                </StackLayout>
+
+                                <StackLayout x:Name="Farm" Padding="15" Spacing="3" IsVisible="false">
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="land_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="land Area" FontSize="16" />
+                                        <Label  x:Name="Farm_land_area_val"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Building Area" FontSize="16" />
+                                        <Label   x:Name="Farm_Building_area_val"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="No_bed.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="No of room" FontSize="16" />
+                                        <Label  x:Name="Farm_Number_of_room"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="No_bath.jpg" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="No of bath " FontSize="16" />
+                                        <Label   x:Name="Farm_Number_of_normal_bath"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="master_bath.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="No of master Bath " FontSize="16" />
+                                        <Label  x:Name="Farm_Number_of_master_bath"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="building_condition.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Building status" FontSize="16" />
+                                        <Label x:Name="Farm_Building_status"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="has_building.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Has building " FontSize="16" />
+                                        <Label  x:Name="Farm_Has_building"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="need_maintainance.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Need to maintenace" FontSize="16" />
+                                        <Label   x:Name="Farm_need_to_maintenance"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="building_age.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Farm Age " FontSize="16" />
+                                        <Label  x:Name="Farm_Building_Age"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="pool.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Pool" FontSize="16" />
+                                        <Label   x:Name="Farm_pool"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="entertament.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Entertament" FontSize="16" />
+                                        <Label  x:Name="Farm_Entertament"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+                                        <Image Source="carps.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Crops" FontSize="16" />
+                                        <Label   x:Name="Farm_Crops"  FontSize="16" TextColor="#7F7F7F" FontFamily="Silka" />
+
+                                    </StackLayout>
+
+
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10"  Margin="0,5,0,0" Padding="10">
+
+                                        <Image Source="garden.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Garden" FontSize="16" />
+                                        <Label  x:Name="Farm_Garden"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+
+
+                                    </StackLayout>
+
+
+
+
+
+
+
+
+
+
+                                </StackLayout>
+
+                                <StackLayout x:Name="Villa" Padding="0" Spacing="20" IsVisible="false">
+
+                                    <StackLayout Orientation="Horizontal" Spacing="20"    >
+
+                                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                            <Image Source="land_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="land Area " FontSize="14" />
+                                                <Label  x:Name="Villa_land_area_val"   FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="building_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="Building Area" FontSize="14"  />
+                                                <Label   x:Name="Villa_Building_area_val"  FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="80"  >
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="No_bed.jpg" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="No. of Room" FontSize="14" />
+                                                <Label  x:Name="villa_Number_of_room"   FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold"/>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="No_bath.jpg" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="No. Bath room" FontSize="15" />
+                                            <Label   x:Name="Villa_Number_of_normal_bath"  FontSize="15" TextColor="#7F7F7F" FontFamily="Silka" />
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="55"  >
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="master_bath.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="No. master Bath" FontSize="15" />
+                                            <Label  x:Name="Villa_Number_of_master_bath"   FontSize="15" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="building_condition.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="Villa Status" FontSize="15" />
+                                            <Label   x:Name="Villa_Building_status"  FontSize="15" TextColor="#7F7F7F" FontFamily="Silka" />
+                                        </StackLayout>
+
+                                    </StackLayout>
+                                    
+                                    <StackLayout Orientation="Horizontal" Spacing="30" >
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="need_maintainance.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="Need maintenace" FontSize="15" />
+                                            <Label  x:Name="Villa_need_to_maintenance"   FontSize="15" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="building_age.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="Villa Age" FontSize="15" />
+                                            <Label   x:Name="Villa_Building_Age"  FontSize="15" TextColor="#7F7F7F" FontFamily="Silka" />
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="95"  >
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="elevator.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="elevator" FontSize="15" />
+                                            <Label  x:Name="Villa_elevator"   FontSize="15" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="No_floor.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="No. of Floors" FontSize="15" />
+                                            <Label   x:Name="Villa_Number_of_Floors"  FontSize="15" TextColor="#7F7F7F" FontFamily="Silka" />
+                                        </StackLayout>
+
+                                    </StackLayout>                                    
+                                    
+                                    <StackLayout Orientation="Horizontal" Spacing="100" >
+                                            <StackLayout Orientation="Horizontal">
+                                        <Image Source="garden.png" WidthRequest="20" HeightRequest="20" />
+                                        <Label Text="Garden" FontSize="15" />
+                                        <Label  x:Name="Villa_Garden"   FontSize="15" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                            </StackLayout>
+                                            <StackLayout x:Name="Show_parking"   IsVisible="true"  Orientation="Horizontal">
+                                                <Image Source="parking.png" WidthRequest="20" HeightRequest="20" />
+                                                <Label Text="parking" FontSize="15" />
+                                                <Label  x:Name="parking_val"   FontSize="16" TextColor="#7F7F7F" FontFamily="Silka"/>
+                                            </StackLayout>
+
+
+                                        </StackLayout>
+
+                                </StackLayout>                         
+
+                                <StackLayout x:Name="Land" Padding="0" Spacing="0" IsVisible="false" Margin="0,10,0,0">
+                                        <Grid Padding="0">
+                                            <StackLayout Orientation="Horizontal" Spacing="75">
+
+                                                <StackLayout Orientation="Horizontal" Grid.Column="1" >
+                                                <Image Source="land_area.jpg" WidthRequest="20" HeightRequest="20" />
+                                                <Label Text="land Area " FontSize="14" ></Label>
+                                                <Label x:Name="land_area_val"  FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" FontAttributes="Bold" />
+                                            </StackLayout>
+
+                                                <StackLayout Orientation="Horizontal" Grid.Column="2">
+                                                <Image Source="services.png" WidthRequest="20" HeightRequest="20" />
+                                                    <Label Text="services " FontSize="14" TextColor="#7F7F7F" FontFamily="Silka"  MaxLines="1"/>
+                                                    <Label x:Name="Land_Existence_of_services"  FontSize="14" TextColor="#7F7F7F" FontFamily="Silka"  MaxLines="1"  FontAttributes="Bold"/>
+                                            </StackLayout>
+                                    </StackLayout>
+                                     </Grid>
+
+
+                                      <StackLayout Orientation="Horizontal" Padding="0" Spacing="80"  Margin="0,25,0,0">
+
+
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="No_road.png" WidthRequest="20" HeightRequest="20" />
+                                                <Label Text="Street categoury " FontSize="14" FontFamily="Silka" MaxLines="1"/>
+                                                <Label x:Name="Street_categoury_Val"  FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" MaxLines="1" FontAttributes="Bold"/>
+                                            </StackLayout>
+
+                                            <StackLayout Orientation="Horizontal" >
+                                            <Image Source="No_road.png" WidthRequest="20" HeightRequest="20" />
+                                                <Label Text="No. of Street "  FontSize="13" TextColor="#7F7F7F" FontFamily="Silka" MaxLines="1" />
+                                                <Label x:Name="Land_Number_of_Street" FontSize="13" TextColor="#7F7F7F" FontFamily="Silka"   MaxLines="1" FontAttributes="Bold"/>
+                                        </StackLayout>
+                                    </StackLayout>
+
+
+                                </StackLayout>
+                                
+                                    <StackLayout Orientation="Horizontal" Padding="0" Spacing="15"  Margin="0,25,0,0">
+
+                                        <StackLayout Orientation="Horizontal" Grid.Column="1">
+                                            <Image Source="land_regulation.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="Organization type " FontSize="15" MaxLines="1"/>
+                                            <Label x:Name="Land_Organization_type"  FontSize="13" TextColor="#7F7F7F" FontFamily="Silka" MaxLines="1" FontAttributes="Bold"/>
+                                            <Label x:Name="Land_Organization_Name"  FontSize="13" TextColor="#7F7F7F" FontFamily="Silka" MaxLines="1"  FontAttributes="Bold"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Padding="0" Spacing="15"  Margin="0,25,0,0">
+                                 
+                                </StackLayout>
+
+
+                                    <StackLayout Orientation="Horizontal" Padding="0" Spacing="15"  Margin="0,5,0,0">
+                                    <StackLayout Orientation="Horizontal"  >
+                                        <Image Source="payment_methode.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label  Text="Payment Type "   FontSize="14" FontFamily="Silka" MaxLines="2" />
+                                            <Label x:Name="Payment_Val"   FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" MaxLines="2" FontAttributes="Bold"/>
+                                    </StackLayout>
+
+                                  
+                                </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Padding="0" Spacing="15"  Margin="0,25,0,0">
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="Advertiser.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label  Text="Advertiser Type " FontSize="14" MaxLines="1"/>
+                                            <Label x:Name="advertiser_type_Val" FontSize="14" TextColor="#7F7F7F" FontFamily="Silka" MaxLines="1" FontAttributes="Bold"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+
+                            <StackLayout x:Name="Description_tab" Padding="5" Spacing="1" IsVisible="false">
+
+                                <Label  Text="Description" FontSize="Medium"/>
+                                <Label x:Name="ads_description"  HeightRequest="200" WidthRequest="200" FontSize="16" TextColor="#000000" FontFamily="Silka"/>
+                            </StackLayout>
+
+
+                            <StackLayout x:Name="Location_tab" Padding="5" Spacing="1" IsVisible="false">
+
+                                <Label  Text="Map" FontSize="Medium" />
+                                <map:Map
+                x:Name="mapObject"             
+                MapType="Street"              
+                        WidthRequest="200"
+                        HeightRequest="300"/>
+
+                                <StackLayout
+                BackgroundColor="White"
+                Padding="5"
+                Spacing="2"
+                Grid.Row="5">
+                                    <Label
+                    x:Name="addressEntry"
+                    />
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout x:Name="Comment_tab" Padding="0" Spacing="1"  IsVisible="False">
+                                  
+                                    
+
+                                    <CollectionView x:Name="collectionView" HeightRequest="100"
+          SelectionMode="Single" >
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Padding="10">
+                                              
+                                                <StackLayout>
+                                                    <StackLayout Orientation="Horizontal" Spacing="20" Padding="10">
+
+                                                        <Frame CornerRadius="100" Padding="0"  HorizontalOptions="Center"
+                                IsClippedToBounds="True">
+                                                            <Image Source="{Binding register_logo}"  Aspect="AspectFill" WidthRequest="50" HeightRequest="50" />
+                                                        </Frame>
+                                                        <StackLayout Orientation="Vertical" Spacing="0" Padding="0">
+
+                                                            <Label Text="{Binding register_name}"   FontSize="16" TextColor="Black"   HorizontalTextAlignment="Start" FontFamily="Silka"/>
+                                                            <Label Grid.Column="1"   Text="{Binding comment_time}"  FontAttributes="Bold" />
+
+
+                                                        </StackLayout>
+
+                                                    </StackLayout>
+
+
+                                                    <StackLayout Padding="85,1,5,5">
+                                                        <Label Grid.Row="8" Text="{Binding description}"   />
+                                                    </StackLayout>
+                                                </StackLayout>
+
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+
+                                </CollectionView>
+
+                                <StackLayout Orientation="Horizontal" Spacing="25"  HorizontalOptions="EndAndExpand" VerticalOptions="End">
+                                    <!--  <Editor x:Name="txt_Comment" Placeholder="Write comments" AutoSize="TextChanges" FontSize="Medium" Margin="0"  />-->
+                                    <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="335" >
+                                        <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,0,0,0">
+                                            <local:RoundedEntry  x:Name="txt_Comment" FontSize="16"  BackgroundColor="White" TextColor="#555555"  FontFamily="Silka"  Placeholder="comment Here" WidthRequest="335" HeightRequest="50"  />
+                                        </StackLayout>
+                                    </Frame>
+
+
+                                    <Frame CornerRadius="100" Padding="0"  HorizontalOptions="Center" 
+                   WidthRequest="50" HeightRequest="50" BackgroundColor="#1269C8"
+              IsClippedToBounds="True">
+                                        <StackLayout Orientation="Horizontal" Spacing="25">
+                                            <ImageButton  Source="send.png"  WidthRequest="35" HeightRequest="35" Padding="10,5,5,5" HorizontalOptions="Center" BackgroundColor="Transparent" Clicked="Comment_Clicked"></ImageButton>
+
+
+                                        </StackLayout>
+
+                                    </Frame>
+                                </StackLayout>
+                                <!-- <Button Text="Submit"  HorizontalOptions="FillAndExpand" Clicked="Comment_Clicked"></Button>-->
+                            </StackLayout>
+
+                        </StackLayout>
+        <!--</ScrollView>-->
+        </StackLayout>
+                </StackLayout>
+                
+                
+                
+                
+                
+            </pancake:PancakeView>
+        </StackLayout>
+
+   
+    </Grid>
+</ContentPage>

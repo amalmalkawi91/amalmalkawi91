@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aquary.Views.Main_Service_add_ads"
+               xmlns:i18n="clr-namespace:Aquary.Helper"
+               Title="{i18n:Translate Add_ads_Title}"
+              Shell.BackgroundColor="#ECECEC"       
+             Shell.TitleColor="#000000"
+              Shell.NavBarIsVisible="true"
+               Shell.TabBarIsVisible="False"
+              Shell.NavBarHasShadow="False"
+               NavigationPage.HasNavigationBar="False"             
+              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+               xmlns:converters="clr-namespace:Aquary.Converters"
+              BackgroundColor="#ECECEC">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:LanguageConverter x:Key="langConverter" />
+        </ResourceDictionary>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <StackLayout>
+            <pancake:PancakeView Padding="10"
+                     BackgroundColor="#FFFFFF"
+                     CornerRadius="40,40,0,0">
+        <CollectionView x:Name="collectionView"
+                          SelectionMode="Single"
+               SelectionChanged="CollectionViewListSelectionChanged" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                            <Grid Padding="5,20,0,0"  >
+                                <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <Frame CornerRadius="20"   Padding="0"     
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="115"
+                       WidthRequest="360" >
+                            <Image Source="{Binding image}" Aspect="AspectFill"></Image>
+
+
+                        </Frame>
+                                <Label Grid.Row="2"
+                                            Text="{Binding .,Converter={StaticResource langConverter}}"
+                                         FontSize="16"
+                                       HorizontalTextAlignment="Center"
+                                       TextTransform="Uppercase"
+                                       FontFamily="Silka"
+                                       TextColor="#555555"/>
+
+                            </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+            </pancake:PancakeView>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

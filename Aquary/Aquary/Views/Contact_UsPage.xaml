@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="Aquary.Views.Contact_UsPage"
+              Title="CONTACT US">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <!--  <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
+                </ContentView>-->
+            </StackLayout>
+        </StackLayout>
+        <ScrollView Grid.Row="1">
+            <StackLayout Spacing="15" Padding="15">
+
+                <Frame BorderColor="Gray"  CornerRadius="20" Padding="8">
+                    <StackLayout Orientation="Horizontal">
+                      
+                        <StackLayout Orientation="Vertical" Padding="5">
+                            <Label   Text="00962 799654645"  FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="start"/>
+                            <Label   Text="call us" FontSize="Small" TextColor="Black" HorizontalTextAlignment="Start"/>
+                             </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+
+
+                <Frame BorderColor="Gray"  CornerRadius="20" Padding="8">
+                    <StackLayout Orientation="Horizontal">
+
+                        <StackLayout Orientation="Vertical" Padding="5">
+                            <Label   Text="info@aeqary.com"  FontSize="Medium" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="start"/>
+                            <Label   Text="contact us" FontSize="Small" TextColor="Black" HorizontalTextAlignment="Start"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+
+
+
+
+                <StackLayout>
+                    <Label  Text="Map"  HorizontalOptions="Fill"  FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+
+                    <map:Map  x:Name="mapObject"  MapType="Street"              
+                        WidthRequest="200"
+                        HeightRequest="300"/>
+                    <StackLayout BackgroundColor="White"  Padding="5" Spacing="2" Grid.Row="5">
+                        <Label x:Name="addressEntry"/>
+                    </StackLayout>
+                </StackLayout>
+
+
+                
+
+
+          
+            </StackLayout>
+        </ScrollView>
+        </Grid>
+</ContentPage>

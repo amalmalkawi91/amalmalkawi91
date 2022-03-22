@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aquary.Views.Sub_Service"
+             Shell.TabBarIsVisible="false"
+               Shell.TitleColor="#FFFFFF"
+              Shell.ForegroundColor="#FFFFFF"
+             Shell.BackgroundColor="#01927A"
+             Shell.NavBarHasShadow="False"
+             Shell.NavBarIsVisible="True"
+               BackgroundColor="#01927A"
+               xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"   
+               xmlns:converters="clr-namespace:Aquary.Converters"
+               Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="Filter.png" Text="Search"  Clicked="Search_Clicked_1"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:LanguageConverter x:Key="langConverter" />
+        </ResourceDictionary>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout >
+        <pancake:PancakeView Padding="15" BackgroundColor="#FFFFFF" HeightRequest="1000" CornerRadius="40,40,0,0">
+            <ScrollView Grid.Row="1">
+                <StackLayout >
+                    <CarouselView x:Name="collectionView_Photo" HeightRequest="100" WidthRequest="360" BackgroundColor="Transparent">
+                        <!-- <CarouselView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CarouselView_ads_tapped"/>
+                        </CarouselView.GestureRecognizers> -->
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="20"   Padding="0"    
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="100"
+                       WidthRequest="350" BackgroundColor="Transparent">
+                                    <Image  Source="{Binding image}" WidthRequest="300" HeightRequest="100" Aspect="AspectFill" BackgroundColor="Transparent"></Image>
+                                </Frame>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+
+                    <CollectionView x:Name="collectionView"
+                          SelectionMode="Single" 
+               SelectionChanged="CollectionViewListSelectionChanged">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10,5,0,0" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Frame CornerRadius="20"   Padding="0"    
+                        HorizontalOptions="Center" VerticalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="110"
+                       WidthRequest="150" >
+                                        <Image Grid.RowSpan="5"  Source="{Binding image}" Aspect="AspectFill"></Image>
+                                    </Frame>
+                                    <Label Grid.Row="2"
+                                            Text="{Binding .,Converter={StaticResource langConverter}}"
+                                         FontSize="15"
+                                       HorizontalTextAlignment="Center"
+                                       TextTransform="Uppercase"
+                                       FontFamily="Silka"
+                                       TextColor="#555555"/>
+
+
+
+
+
+
+                                </Grid>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </pancake:PancakeView>
+    </StackLayout>
+</ContentPage>

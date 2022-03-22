@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:local="clr-namespace:CustomRendererDemo"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+              xmlns:footer="clr-namespace:Aquary.ReusableComponents"
+             xmlns:converters="clr-namespace:Aquary.Converters" 
+               xmlns:i18n="clr-namespace:Aquary.Helper"
+             mc:Ignorable="d"             
+             Shell.NavBarIsVisible="True"             
+             x:Class="Aquary.Views.LoginPage"            
+              Shell.NavBarHasShadow="False"
+             Shell.TabBarIsVisible="False"
+             NavigationPage.HasBackButton="False"                                 
+            BackgroundColor="#ECECEC"
+               Title="{i18n:Translate LOGIN_Title}">
+   
+     
+      
+     
+
+        <StackLayout >
+                <pancake:PancakeView Padding="10"
+                     BackgroundColor="#FFFFFF"
+                    HeightRequest="1000"
+                     CornerRadius="40,40,0,0">
+                <StackLayout>
+                    <Grid>
+                    <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                    
+                <ScrollView Grid.Row="1">
+
+                    <StackLayout Spacing="20"  Padding="20" x:Name="Menu_Scroll_Lang">
+                        <StackLayout>
+                        <Image x:Name="Profile_Picture"  Source="Main_Logo.jpg"   HeightRequest="144"   WidthRequest="212"
+               BackgroundColor="Transparent" Margin="0,0,0,30" />
+
+                        </StackLayout>
+                        <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       HorizontalOptions="FillAndExpand" >
+                            <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,0,0,0">
+                                <Image Source="Email.jpg" WidthRequest="20" HeightRequest="15" BackgroundColor="Transparent"/>
+                                    <local:RoundedEntry  x:Name="Email" FontSize="15"  BackgroundColor="White" TextColor="#555555"  FontFamily="Silka"   HorizontalOptions="FillAndExpand"  Placeholder="{i18n:Translate Email}"  />
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                        HorizontalOptions="FillAndExpand" >
+                            <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,0,0,0" >
+                                <Image Source="Password.jpg" WidthRequest="16" HeightRequest="15" BackgroundColor="Transparent"/>
+                                    <local:RoundedEntry  x:Name="Password" FontSize="16" BackgroundColor="White" TextColor="#555555"   FontFamily="Silka" Placeholder="{i18n:Translate PASSWORD}" HorizontalOptions="StartAndExpand" IsPassword="true" />
+
+                            </StackLayout>
+                        </Frame>
+                        <!--  <Entry x:Name="Password" FontSize="Medium" BackgroundColor="White" TextColor="Black"   Placeholder="Password" IsPassword="true"/>-->
+
+
+
+
+
+                        <Button Text="{i18n:Translate Forget_Password}" FontSize="13" HorizontalOptions="End"  Clicked="Forget_Password" BackgroundColor="White" TextColor="Black"  FontFamily="Silka" BorderColor="Black"></Button>
+
+
+                        <StackLayout Orientation="Vertical">
+                            <Frame CornerRadius="40"   Padding="0"    
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="400" >
+                                <Button Text="{i18n:Translate btn_Login}"  FontSize="16"  WidthRequest="335" HeightRequest="50"  Clicked="Button_Clicked_1" BackgroundColor="#1269C8" FontFamily="Silka"></Button>
+                            </Frame>
+
+                            <StackLayout Orientation="Vertical">
+                                <Frame BorderColor="Transparent">
+                                    <Label  Text="{i18n:Translate Dont_Have_Account}"  FontSize="13" TextColor="Black"  HorizontalTextAlignment="Center" FontFamily="Silka"/>
+                                </Frame>
+                            </StackLayout>
+                            <!--  <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="#1690F4" />-->
+
+                            <Button  Text="{i18n:Translate Register}"  HorizontalOptions="Fill"   VerticalOptions = "Start" Clicked="Button_Clicked" BackgroundColor="White" TextColor="#1269C8"  BorderWidth="1" BorderRadius="40" BorderColor="#1269C8"></Button>
+
+
+
+                        </StackLayout>
+                    </StackLayout>
+
+                </ScrollView>
+                    
+                </Grid>
+                    <StackLayout>
+                        <footer:FooterTabbedBar
+            VerticalOptions="End"
+            Grid.Row="0"/>
+                    </StackLayout>
+                </StackLayout>
+            </pancake:PancakeView>
+          
+        </StackLayout>
+      
+           
+
+</ContentPage>

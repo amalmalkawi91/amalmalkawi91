@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aquary.Views.Verify_OTP"
+                    xmlns:local="clr-namespace:CustomRendererDemo"
+                 Title="{Binding Title}">
+    <StackLayout Spacing="35" Padding="20" Margin="20,20,20,20">
+
+        <Label Text="NEW CODE HAS BEEN SENT TO YOUR EMAIL!" FontSize="Medium" />
+
+        <local:RoundedEntry  x:Name="Code" FontSize="Medium" BackgroundColor="White" TextColor="Black"   Placeholder="Enter OTP"  />
+
+
+        <Frame CornerRadius="40"   Padding="0"    
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="400" >
+            <Button Text="Submit"  HorizontalOptions="FillAndExpand" Clicked="Button_Clicked"></Button>
+        </Frame>
+        
+       <!-- <Button Text="Verify"  HorizontalOptions="FillAndExpand" Clicked="Button_Clicked"></Button>
+        <Button Text="Resend OTP"  HorizontalOptions="FillAndExpand" Clicked="Resend_Clicked_1"></Button>-->
+
+
+    </StackLayout>
+
+</ContentPage>

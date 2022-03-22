@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aquary.Views.SettingPage"
+             Title="SETTINGS">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+       
+
+        <ScrollView Grid.Row="1">
+
+            <StackLayout Spacing="20" Padding="15">
+                <StackLayout Orientation="Horizontal" Spacing="100">
+                    <Label Text="Lanquage" HorizontalOptions="Fill" FontSize="Medium" />
+                    <StackLayout Orientation="Horizontal" Spacing="100">
+                        <StackLayout Orientation="Horizontal">
+                    <RadioButton  x:Name="rdb_langar" Content="Arabic" Value="1" IsChecked="True"  GroupName="rdb_langar"/>
+                    <RadioButton  x:Name="rdb_langen" Content="English" Value="0"  GroupName="rdb_langar"/>
+                </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Spacing="100">
+                    <Label Text="Text Size " FontSize="Medium" />
+                    <StackLayout Orientation="Horizontal" Spacing="20">
+                        <Button x:Name="Btn_LOCATION" Text="A" FontSize="15" HeightRequest="40" WidthRequest="50" BackgroundColor="White" TextColor="Blue"  BorderWidth="1" BorderRadius="15" BorderColor="CornflowerBlue"></Button>
+                        <Button x:Name="Btn_DESCRIPTION" Text="A" FontSize="15" HeightRequest="40" WidthRequest="50" BackgroundColor="Blue" TextColor="White"  BorderWidth="1" BorderRadius="15" BorderColor="CornflowerBlue"></Button>
+                        <Button x:Name="Btn_COMMENTS" Text="A" FontSize="15" FontAttributes="Bold" HeightRequest="40" WidthRequest="50" BackgroundColor="White" TextColor="Blue"  BorderWidth="1" BorderRadius="15" BorderColor="CornflowerBlue"></Button>
+                </StackLayout>
+                </StackLayout>
+
+
+                <TableView Intent="Data"  HeightRequest="150">
+                    <TableRoot>
+                        <TableSection Title="">
+
+                            <SwitchCell x:Name="Switch_Dark"  Text="Dark Mode" On="False"  />       
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+                
+                
+            </StackLayout>
+
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

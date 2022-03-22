@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"            
+             xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+                    xmlns:local="clr-namespace:CustomRendererDemo"
+                xmlns:local2="clr-namespace:CustomRendererDemo.Droid"
+                    xmlns:CV="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             xmlns:FFImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:FFImageCache="clr-namespace:FFImageLoading.Cache;assembly=FFImageLoading"
+              Shell.TabBarIsVisible="false"
+              xmlns:i18n="clr-namespace:Aquary.Helper"
+                         xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+ x:Class="Aquary.Views.Ads_Deco_Form"
+               xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"    
+               BackgroundColor="#ECECEC"
+               Shell.NavBarHasShadow="False"
+               Title="{i18n:Translate Add_ads_Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CarouselViewStyle" TargetType="CV:CarouselViewControl">
+                <Setter Property="ShowIndicators" Value="True" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="AnimateTransition" Value="False" />
+            </Style>
+
+            <OnPlatform x:Key="cacheType" x:TypeArguments="FFImageCache:CacheType"
+                    iOS="All"
+                    Android="Memory"/>
+            <OnPlatform x:Key="downsampleWidth" x:TypeArguments="x:Double"
+                    iOS="576"
+                    Android="896"/>
+            <OnPlatform x:Key="imageHeight" x:TypeArguments="x:Double"
+                        iOS="275"
+                        Android="325"/>
+
+            <Style x:Key="CarouselViewPictureStyle" TargetType="FFImage:CachedImage">
+                <Setter Property="Source" Value="{Binding .}" />
+                <Setter Property="IsOpaque" Value="True" />
+                <Setter Property="InputTransparent" Value="False" />
+                <Setter Property="CacheType" Value="{StaticResource cacheType}" />
+                <Setter Property="Aspect" Value="AspectFill" />
+                <Setter Property="DownsampleWidth" Value="{StaticResource downsampleWidth}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
+
+    <StackLayout x:Name="Menu_Scroll_Lang">
+        <pancake:PancakeView Padding="5"
+                     BackgroundColor="#FFFFFF"
+                              HeightRequest="1000"
+                     CornerRadius="40,40,0,0">
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+
+                <ScrollView Grid.Row="1">
+                    <StackLayout>
+                        <StackLayout x:Name="Details_tab" Padding="5" Spacing="1" IsVisible="true">
+
+                            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="30">
+
+                                <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                         HorizontalOptions="FillAndExpand" >
+
+                                    <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,10,0,0">
+                                        <local:RoundedEntry  x:Name="Company_Name" FontSize="16"  BackgroundColor="White" TextColor="#555555"  FontFamily="Silka"   Placeholder="{i18n:Translate Company_name}"  HorizontalOptions="FillAndExpand" />
+                                    </StackLayout>
+                                </Frame>
+
+
+
+
+                                <Frame CornerRadius="40"                                              
+                        HasShadow="True"   
+                        IsClippedToBounds="True"
+                        Padding="0"                 
+                       HeightRequest="50"
+                       WidthRequest="400" >
+
+                                    <local2:RoundedPicker  x:Name="City_Val" FontSize="16" Title="{i18n:Translate Select_City}"  ItemDisplayBinding="{Binding name_en}" BackgroundColor="White" TextColor="#555555"  FontFamily="Silka" SelectedIndexChanged="City_Val_SelectedIndexChanged"   />
+
+                                </Frame>
+
+                                <!--  <Picker x:Name="City_Val1" HorizontalOptions="FillAndExpand" Title="Select City" ItemDisplayBinding="{Binding name_en}" SelectedIndexChanged="City_Val_SelectedIndexChanged"/>-->
+
+
+                                <Frame CornerRadius="40"                                              
+                        HasShadow="True"   
+                        IsClippedToBounds="True"
+                        Padding="0"                 
+                       HeightRequest="50"
+                       WidthRequest="400" BorderColor="#D0D0D0">
+
+                                    <local2:RoundedPicker  x:Name="Region_val" FontSize="16" Title="{i18n:Translate Select_Region}"   ItemDisplayBinding="{Binding name_en}" BackgroundColor="White" TextColor="#555555"  FontFamily="Silka"  SelectedIndexChanged="Region_val_SelectedIndexChanged"  />
+
+                                </Frame>
+
+
+
+
+                                <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,10,0,0">
+                                        <local:RoundedEntry  x:Name="Owner_Phone" FontSize="16"  BackgroundColor="White" TextColor="#555555"  FontFamily="Silka"  Placeholder="{i18n:Translate PHONE}"   HorizontalOptions="FillAndExpand" />
+                                    </StackLayout>
+                                </Frame>
+
+
+                                <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                      HorizontalOptions="FillAndExpand" >
+                                    <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,10,0,0">
+                                        <local:RoundedEntry  x:Name="Facebook_Val" FontSize="16"  BackgroundColor="White" TextColor="#555555"  FontFamily="Silka" Placeholder="{i18n:Translate Facebook}"  HorizontalOptions="FillAndExpand" HeightRequest="50"  />
+                                    </StackLayout>
+                                </Frame>
+
+
+                                <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       HorizontalOptions="FillAndExpand" >
+                                    <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,10,0,0">
+                                        <local:RoundedEntry  x:Name="Instagram_Val" FontSize="16"  BackgroundColor="White" TextColor="#555555"  FontFamily="Silka" Placeholder="{i18n:Translate Instagram}"   HorizontalOptions="FillAndExpand" HeightRequest="50"  />
+                                    </StackLayout>
+                                </Frame>
+
+
+                                <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,10,0,0">
+                                        <local:RoundedEntry  x:Name="Email_Val" FontSize="16"  BackgroundColor="White" TextColor="#555555"  FontFamily="Silka"  Placeholder="{i18n:Translate Email}"   HorizontalOptions="FillAndExpand" HeightRequest="50"  />
+                                    </StackLayout>
+                                </Frame>
+
+
+
+
+
+                                <StackLayout Orientation="Horizontal" Spacing="70">
+
+                                    <Label  Text="{i18n:Translate chk_Has_ads}"  FontSize="Medium" />
+
+                                    <CheckBox x:Name="chk_Has_ads" IsChecked="False" CheckedChanged="chk_Has_ads_CheckedChanged"/>
+
+                                </StackLayout>
+                                <Label Text="{i18n:Translate Ads_status}"  HorizontalOptions="Fill" FontSize="Medium" />
+
+                                <StackLayout Orientation="Horizontal" Spacing="50">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="30">
+                                        <input:RadioButton x:Name="rdb_Active_1"  Text="{i18n:Translate active}" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Active_1_clicked"/>
+                                        <input:RadioButton x:Name="rdb_Inactive_0" Text="{i18n:Translate Inactive}" Value="0" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Inactive_0_clicked"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+
+                                <Label Text="{i18n:Translate Allow_comment}" HorizontalOptions="Fill" FontSize="Medium" />
+                                <StackLayout Orientation="Horizontal" Spacing="70">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="30">
+                                        <input:RadioButton x:Name="rdb_Allow_comment_1"  Text="{i18n:Translate Yes}" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Allow_comment_1_clicked"/>
+                                        <input:RadioButton x:Name="rdb_Allow_comment_0" Text="{i18n:Translate No}" Value="0" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Allow_comment_0_clicked"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+
+                                <Frame CornerRadius="40"   Padding="0"                                          
+                       IsClippedToBounds="True"                    
+                       HeightRequest="200"
+                       WidthRequest="335" >
+                                    <StackLayout >
+                                        <local:RoundedEntry  x:Name="comp_description_result" FontSize="16" VerticalTextAlignment="Start" BackgroundColor="White" TextColor="#555555"  FontFamily="Silka"  Placeholder="{i18n:Translate DESCRIPTION}"  HeightRequest="200"  />
+                                    </StackLayout>
+                                </Frame>
+
+
+
+                                <Frame CornerRadius="40"   Padding="0"    
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="400" >
+                                    <Button x:Name="Next"  Text="{i18n:Translate Next}"    HorizontalOptions="FillAndExpand" Clicked="Next_Clicked"></Button>
+                                </Frame>
+
+
+
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout x:Name="image_Location_tab" Padding="5" Spacing="10" IsVisible="false">
+
+                            <Label x:Name="Logo_Val" Text="{i18n:Translate Images}" FontSize="Medium" HorizontalOptions="Fill"  FontAttributes="Bold" TextColor="Black"/>
+
+                            <Frame CornerRadius="20"   Padding="0"    
+                        HorizontalOptions="Start"                      
+                       IsClippedToBounds="True" BackgroundColor="#1269C8" WidthRequest="100" HeightRequest="100">
+                                <StackLayout>
+                                    <ImageButton x:Name="Upload" Source="Upload_Photo.png"  WidthRequest="35" HeightRequest="35" Clicked="upload_Clicked" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,25,10,10"></ImageButton>
+
+
+                                </StackLayout>
+                            </Frame>
+
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Black"/>
+
+                            <StackLayout>
+                                <Label  Text="{i18n:Translate Map}"  HorizontalOptions="Fill"  FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+
+                                <map:Map  x:Name="mapObject"  MapType="Street"              
+                        WidthRequest="200"
+                        HeightRequest="300" MapClicked="MapObject_MapClicked"
+                            />
+
+                                <StackLayout
+                BackgroundColor="White"
+                Padding="5"
+                Spacing="2"
+                Grid.Row="5">
+                                    <Label
+                    x:Name="addressEntry"
+                    />
+
+
+                                </StackLayout>
+                            </StackLayout>
+
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Black"/>
+                            <StackLayout>
+                                <Label Text="{i18n:Translate PAYMENT }"  HorizontalOptions="Fill"  FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+                            </StackLayout>
+                            <Label Text="{i18n:Translate Type_advertisment}"  HorizontalOptions="FillAndExpand" FontSize="Medium" />
+                            <ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <StackLayout  x:Name="Show_Ads_Type" IsVisible="True" Orientation="Horizontal">
+                                    <input:RadioButtonGroupView Orientation="Horizontal" Spacing="30">
+                                        <input:RadioButton x:Name="rdb_Ads_Type_1"  Text="{i18n:Translate Normal}" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Ads_Type_1_clicked"/>
+                                        <input:RadioButton x:Name="rdb_Ads_Type_2" Text="{i18n:Translate Unique}" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Ads_Type_2_clicked"/>
+                                        <input:RadioButton x:Name="rdb_Ads_Type_3"  Text="{i18n:Translate special}" Value="3"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20" Clicked="rdb_Ads_Type_3_clicked"/>
+                                        <input:RadioButton x:Name="rdb_Ads_Type_4" Text="{i18n:Translate Freez}" Value="4" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" Clicked="rdb_Ads_Type_4_clicked"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+                            </ScrollView>
+
+                            <StackLayout Orientation="Horizontal" x:Name="Show_Price" IsVisible="True">
+
+
+                                <Stepper x:Name="Stepper_price" Value="0" Minimum="1" Maximum="100" Increment="1" HorizontalOptions="Start" ValueChanged="Stepper_ValueChanged" />
+
+                                <Label x:Name="lbldisp"  HorizontalOptions="Start" FontSize="16"></Label>
+
+                                <Label Text="/Day" FontSize="16"></Label>
+
+                                <Label Text="JOD" FontSize="16"  />
+
+                                <Label x:Name="Price_Val" FontSize="16" ></Label>
+
+
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" IsVisible="false">
+                                <input:RadioButtonGroupView Orientation="Horizontal" Spacing="30">
+                                    <input:RadioButton Text="Has been paid to aeqary" Value="1"  IsChecked="True" TextColor="#555555" TextFontSize="16" Color="#1269C8" HeightRequest="20"/>
+                                    <input:RadioButton Text="online payment" Value="2" Color="#1269C8" TextColor="#555555" TextFontSize="16" HeightRequest="20" />
+                                </input:RadioButtonGroupView>
+                            </StackLayout>
+
+
+
+                            <Frame CornerRadius="40"   Padding="0"    
+                        HorizontalOptions="Center"                      
+                       IsClippedToBounds="True"                    
+                       HeightRequest="50"
+                       WidthRequest="400" >
+                                <Button Text="{i18n:Translate Submit}"  HorizontalOptions="FillAndExpand" Clicked="Submit_Clicked"></Button>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+
+                            <!--  <Button x:Name="Btn_DESCRIPTION" Text="DESCRIPTION" HorizontalOptions="Fill"       VerticalOptions = "Start"  BackgroundColor="White" TextColor="Blue"  BorderWidth="1" BorderRadius="40" BorderColor="CornflowerBlue" Clicked="Btn_DESCRIPTION_Clicked"></Button>-->
+
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+
+            </Grid>
+        </pancake:PancakeView>
+    </StackLayout>
+
+
+
+
+</ContentPage>
